@@ -18,7 +18,7 @@ const page = () => {
                 </div>
             </div>
             <div className='w-fit mx-auto'>
-                <CountdownTimer />
+                {/* <CountdownTimer /> */}
             </div>
             <p className='text-center text-white w-3/4 mx-auto 2xl:text-2xl xl:text-lg text-sm 2xl:mt-32 xl:mt-20 mt-10 font-medium'>
                 The goal of the AFS GAMES is to motivate you to get on the water throughout October, to improve and push your limits in a friendly atmosphere. Accumulate hours of sailing and try to secure a spot on the podium, with prizes offered by our partners.

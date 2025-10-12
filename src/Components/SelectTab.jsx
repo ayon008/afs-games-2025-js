@@ -38,7 +38,7 @@ const SelectTab = ({ pointTable }) => {
     };
 
     return (
-        <div>
+        <div className='lg:px-0 px-4'>
             <Tabs selectedIndex={tabIndex} onSelect={(i) => { setTabIndex(i); setPage(1); }}>
                 <TabList className={'flex items-center 2xl:justify-center xl:justify-center justify-between 2xl:gap-10 xl:gap-10 gap-4 cursor-pointer w-full px-1 overflow-x-auto'}>
                     {categories.map((c, idx) => (
@@ -78,7 +78,7 @@ const SelectTab = ({ pointTable }) => {
                         <TabPanel key={i} className={'2xl:mt-20 xl:mt-12 mt-8'}>
                             <div className="overflow-x-auto">
                                 {/* Search and filters */}
-                                <div className="flex flex-col md:flex-row items-start md:items-center gap-3 mb-4">
+                                <div className="flex flex-col md:flex-row items-start md:items-center gap-3 mb-4 lg:px-0 px-4">
                                     <input
                                         type="text"
                                         placeholder="Search participant..."
