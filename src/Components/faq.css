@@ -1,0 +1,7 @@
+.faq-des a {
+    @apply text-blue-500 underline !important;
+}
+
+.faq-des ul {
+    list-style: disc !important;
+}

@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .login {
+    background-image: url('../../public/d7c10ca2c366195e3e8a69e980287131.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(10px);
+} */
+
+li:focus {
+    outline: none !important;
+}
+
+.menu li a:focus {
+    @apply text-white !important;
+}
+
+.points {
+    background: linear-gradient(86deg, #1F1F1F 0.71%, #000 99.72%) !important;
+}
+
+.custom-swal-popup {
+    height: 200px !important;
+    font-size: 20px !important;
+}
+
+.custom-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 2fr !important;
+}
+
+.first {
+    background: linear-gradient(90deg, #FFEFB0 0%, rgba(255, 239, 176, 0.00) 100%) !important;
+    border-radius: 10px !important;
+}
+
+.second {
+    background: linear-gradient(90deg, #E4E4E5 0%, rgba(228, 228, 229, 0.00) 100%) !important;
+    border-radius: 10px !important;
+}
+
+.third {
+    background: linear-gradient(90deg, #E5CEB8 0%, rgba(229, 206, 184, 0.00) 100%) !important;
+    border-radius: 10px !important;
+}
+
+.upload {
+    background-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+.banner {
+    background-image: url('../../public/image\ de\ fond\ \(4\).jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+}
+
+input:checked~.collapse-title .icon-plus {
+    display: none;
+}
+
+input:checked~.collapse-title .icon-minus {
+    display: block;
+}
+
+input:not(:checked)~.collapse-title .icon-minus {
+    display: none;
+}
+
+input:not(:checked)~.collapse-title .icon-plus {
+    display: block;
+}
+
+.award {
+    border-radius: 30px;
+    background: linear-gradient(229deg, #707070 1.31%, #000 100%);
+}
+
+.my-position {
+    border-radius: 10px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.00) !important;
+    background: #FFE500 !important;
+}
+
+.rounded-custom {
+    border-radius: 12px 0px 0px 12px;
+}
+
+.faq {
+    padding-inline-end: 20px !important
+}
+
+@media screen and (max-width:576px) {
+    .custom-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+    }
+
+}
