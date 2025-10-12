@@ -11,11 +11,12 @@ import CategoryForm from './CategoryForm';
 import GetDetails from './GetDetails';
 import * as XLSX from 'xlsx';
 import ExportData from './ExportData';
+import InvoiceModal from './InvoicePreviewClient';
 
 const AllUsers = () => {
     const { isLoading, isError, error, allUsers, refetch } = GetAllUser();
     const axiosSecure = useAxiosSecure();
-    const categories = ['Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'Downwind', 'WatermanCrown'];
+    const categories = ['Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'Downwind', 'Parawing'];
     // const ExcelFile = ReactExport.ExcelFile;
     // const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
     const [type, setType] = useState('');
@@ -246,7 +247,7 @@ const AllUsers = () => {
                     </thead>
                     <tbody>
                         {data?.map((user, i) => {
-                            const { pays, city, email, displayName, photoURL, approved, invoiceURL, Windfoil, Wingfoil, Dockstart, Downwind, Surffoil, WatermanCrown, _id, admin } = user;
+                            const { pays, city, email, displayName, photoURL, approved, invoiceURL, Windfoil, Wingfoil, Dockstart, Downwind, Surffoil, WatermanCrown, Parawing, _id, admin } = user;
                             return (
                                 <>
                                     <tr onClick={() => handleOpen(i, open)} className='cursor-pointer' key={_id}>
@@ -274,21 +275,8 @@ const AllUsers = () => {
                                         </td>
                                         <td>{email}</td>
                                         <td>
-                                            {invoiceURL && (
-                                                <a href={invoiceURL} target='_blank' className='text-[#FFE500] underline'>Invoice URL</a>
-                                            )}
+                                            <InvoiceModal invoiceURL={invoiceURL}/>
                                         </td>
-                                        {/* <td className='font-semibold'>
-                                            <div className="dropdown">
-                                                <div tabIndex={0} role="button" className="btn m-1 select select-bordered min-w-[500px]">
-                                                    <p>{Windfoil && 'Windfoil'} {Wingfoil && 'Wingfoil'} {Dockstart && 'Dockstart'} {Downwind && 'Downwind'} {Surffoil && 'Surffoil'} {WatermanCrown && 'Waterman Crown'}</p>
-                                                </div>
-                                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 z-[1] w-full shadow p-0 border-black border-2 rounded-box">
-                                                    <li className='p-2 border-b-2 border-black'>Change the discipline </li>
-                                                    <CategoryForm refetch={refetch} user={user} />
-                                                </ul>
-                                            </div>
-                                        </td> */}
                                         <td className='flex items-center gap-3'>
                                             {!approved ? <span>Disapproved</span> : <span>Approved</span>}
                                             {

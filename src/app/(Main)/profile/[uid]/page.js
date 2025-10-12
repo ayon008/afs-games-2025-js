@@ -23,6 +23,7 @@ const Page = () => {
             displayName: userInfo?.displayName || user?.displayName,
             surName: userInfo?.surName || '',
             pays: userInfo?.pays || '',
+            team: userInfo?.team || '',
             city: userInfo?.city || '',
             email: userInfo?.email || user?.email,
         },
@@ -71,6 +72,7 @@ const Page = () => {
     const fields = [
         { label: 'NAME', name: 'displayName', placeholder: 'Emmma' },
         { label: 'SURNAME', name: 'surName', placeholder: 'Schmidt' },
+        { label: 'TEAM', name: 'team', placeholder: 'Team Name' },
         { label: 'CITY', name: 'city', placeholder: 'Schmidt' },
         { label: 'EMAIL', name: 'email', placeholder: 'emmma_s@email.com', type: 'email', disabled: true }
     ];
@@ -79,6 +81,7 @@ const Page = () => {
         reset({
             email: userInfo?.email || '',
             pays: userInfo?.pays || '',
+            team: userInfo?.team || '',
             city: userInfo?.city || '',
             surName: userInfo?.surName || '',
             displayName: userInfo?.displayName || '',
