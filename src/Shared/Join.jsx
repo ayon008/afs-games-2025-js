@@ -11,7 +11,7 @@ const Join = ({ home }) => {
                     <div className={``}>
                         <Image src={logo} className='2xl:w-[176px] xl:w-[150px] w-[100px] h-auto' alt='' />
                         <p className={`text-white 2xl:text-2xl xl:text-xl text-lg mt-8`}>
-                            <span className="">Join us</span> and take part in the first edition of the <span className={`text-[#FFE500]`}>AFS GAMES ONLINE 2024</span>, meet passionate and participate in new challenges.
+                            <span className="">Join us</span> and take part in the first edition of the <span className={``}>AFS GAMES ONLINE 2025</span>, meet passionate and participate in new challenges.
                         </p>
 
                         <p className={`text-white 2xl:text-2xl xl:text-xl text-lg mt-8`}>Don’t miss this unique opportunity to experience the Foiling Spirit!</p>
