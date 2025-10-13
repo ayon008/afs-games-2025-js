@@ -21,7 +21,7 @@ const Join = ({ home }) => {
                     </p> */}
                     </div>
                 </div>
-                <div className='flex flex-col h-full'>
+                <div className='z-40'>
                     <RegisBtn />
                     <div className='lg:mt-44 mt-10'>
                         <ul className='list-disc text-white space-y-2'>
