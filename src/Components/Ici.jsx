@@ -7,7 +7,7 @@ const Ici = () => {
     const { user } = useAuth();
     return (
         <Link className='' href={user ? `/profile?uid=${user?.uid}` : '/register'}>
-            <span className='text-[#FFE500] underline cursor-pointer'>here.</span>
+            <span className='text-white underline cursor-pointer'>link here.</span>
         </Link>
     );
 };

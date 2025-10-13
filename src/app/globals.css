@@ -51,10 +51,53 @@ li:focus {
 }
 
 .banner {
-    background-image: url('../../public/image\ de\ fond\ \(4\).jpg');
+    position: relative;
+    background-image: url('../../public/afs-games-background.png');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
+    overflow: hidden;
 }
+
+.gradient-text {
+    background: linear-gradient(180deg, #FFFCE4 0%, rgba(255, 252, 228, 0.15) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* For Safari */
+}
+
+/* Black overlay */
+.banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    /* Adjust opacity as needed */
+    z-index: 1;
+}
+
+/* Blur effect */
+.banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px);
+    /* Adjust blur intensity */
+    transform: scale(1.05);
+    /* Prevent edge blur cutoff */
+    z-index: 0;
+}
+
+/* Ensure banner content stays above overlay */
+.banner>* {
+    position: relative;
+    z-index: 2;
+}
+
 
 .icon-container {
     display: flex;

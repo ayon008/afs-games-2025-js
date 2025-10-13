@@ -25,6 +25,7 @@ const SelectTab = ({ pointTable }) => {
     const [displayMode, setDisplayMode] = useState('name'); // 'name' or 'team'
     const [page, setPage] = useState(1);
     const pageSize = 10;
+    const [itemsToShow, setItemsToShow] = useState(10);
     const { user } = useAuth();
     const userData = pointTable?.find(p => p?.uid === user?.uid) || null;
 
@@ -40,7 +41,68 @@ const SelectTab = ({ pointTable }) => {
     return (
         <div className='lg:px-0 px-4'>
             <Tabs selectedIndex={tabIndex} onSelect={(i) => { setTabIndex(i); setPage(1); }}>
-                <TabList className={'flex items-center 2xl:justify-center xl:justify-center justify-between 2xl:gap-10 xl:gap-10 gap-4 cursor-pointer w-full px-1 overflow-x-auto'}>
+                {/* Filters placed at top of category */}
+                <div className="lg:px-0 px-4">
+                    {(() => {
+                        const currentCategory = categories[tabIndex];
+                        const currentSorted = sortDataByTime(pointTable, currentCategory) || [];
+                        const paysOptions = Array.from(new Set(currentSorted.map(s => s?.pays).filter(Boolean)));
+                        const ageOptions = Array.from(new Set(currentSorted.map(s => s?.age).filter(Boolean))).sort((a, b) => a - b);
+                        const teamOptions = Array.from(new Set(currentSorted.map(s => s?.team).filter(Boolean)));
+                        return (
+                            <div className="flex flex-col md:flex-row items-start md:items-center gap-3 mb-4">
+                                <input
+                                    type="text"
+                                    placeholder="Search participant..."
+                                    value={searchTerm}
+                                    onChange={(e) => { setSearchTerm(e.target.value); setPage(1); }}
+                                    className="input input-sm input-bordered w-full md:w-1/3 ring-0 outline-0 focus:ring-0 focus:outline-0"
+                                />
+                                <select
+                                    value={displayMode}
+                                    onChange={(e) => { setDisplayMode(e.target.value); setPage(1); }}
+                                    className="select select-sm select-bordered w-full md:w-1/12 ring-0 outline-0 focus:ring-0 focus:outline-0"
+                                >
+                                    <option value='name'>Player</option>
+                                    <option value='team'>Team</option>
+                                </select>
+                                <select
+                                    value={filterPays}
+                                    onChange={(e) => { setFilterPays(e.target.value); setPage(1); }}
+                                    className="select select-sm select-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
+                                >
+                                    <option value=''>All countries</option>
+                                    {paysOptions.map(p => <option key={p} value={p}>{p}</option>)}
+                                </select>
+                                <input
+                                    type="number"
+                                    min={0}
+                                    placeholder="Age"
+                                    value={filterAge}
+                                    onChange={(e) => { setFilterAge(e.target.value); setPage(1); }}
+                                    className="input input-sm input-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
+                                />
+                                <div className='ml-auto'>
+                                    <button
+                                        type='button'
+                                        className='btn btn-outline btn-sm ring-0 outline-0 focus:ring-0 focus:outline-0'
+                                        onClick={() => {
+                                            setSearchTerm('');
+                                            setFilterPays('');
+                                            setFilterAge('');
+                                            setFilterTeam('');
+                                            setPage(1);
+                                        }}
+                                    >
+                                        Clear filters
+                                    </button>
+                                </div>
+                            </div>
+                        )
+                    })()}
+                </div>
+
+                <TabList className={'flex mt-10 items-center 2xl:justify-center xl:justify-center justify-between 2xl:gap-10 xl:gap-10 gap-4 cursor-pointer w-full px-1 overflow-x-auto font-semibold'}>
                     {categories.map((c, idx) => (
                         <Tab
                             key={c}
@@ -53,10 +115,6 @@ const SelectTab = ({ pointTable }) => {
 
                 {categories?.map((category, i) => {
                     const sorted = sortDataByTime(pointTable, category) || [];
-                    const paysOptions = Array.from(new Set(sorted.map(s => s?.pays).filter(Boolean)));
-                    const ageOptions = Array.from(new Set(sorted.map(s => s?.age).filter(Boolean))).sort((a, b) => a - b);
-                    const teamOptions = Array.from(new Set(sorted.map(s => s?.team).filter(Boolean)));
-
                     // apply search and filters
                     const normalizedSearch = searchTerm.trim().toLowerCase();
                     let filtered = sorted.filter(item => {
@@ -72,68 +130,12 @@ const SelectTab = ({ pointTable }) => {
 
                     const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
                     const startIndex = (page - 1) * pageSize;
-                    const paginated = filtered.slice(startIndex, startIndex + pageSize);
+                    // const paginated = filtered.slice(startIndex, startIndex + pageSize);
+                    const paginated = filtered.slice(0, itemsToShow);
 
                     return (
                         <TabPanel key={i} className={'2xl:mt-20 xl:mt-12 mt-8'}>
                             <div className="overflow-x-auto">
-                                {/* Search and filters */}
-                                <div className="flex flex-col md:flex-row items-start md:items-center gap-3 mb-4 lg:px-0 px-4">
-                                    <input
-                                        type="text"
-                                        placeholder="Search participant..."
-                                        value={searchTerm}
-                                        onChange={(e) => { setSearchTerm(e.target.value); setPage(1); }}
-                                        className="input input-sm input-bordered w-full md:w-1/3 ring-0 outline-0 focus:ring-0 focus:outline-0"
-                                    />
-                                    <select
-                                        value={displayMode}
-                                        onChange={(e) => { setDisplayMode(e.target.value); setPage(1); }}
-                                        className="select select-sm select-bordered w-full md:w-1/12 ring-0 outline-0 focus:ring-0 focus:outline-0"
-                                    >
-                                        <option value='name'>Name</option>
-                                        <option value='team'>Team</option>
-                                    </select>
-                                    <select
-                                        value={filterPays}
-                                        onChange={(e) => { setFilterPays(e.target.value); setPage(1); }}
-                                        className="select select-sm select-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
-                                    >
-                                        <option value=''>All countries</option>
-                                        {paysOptions.map(p => <option key={p} value={p}>{p}</option>)}
-                                    </select>
-                                    <input
-                                        type="number"
-                                        min={0}
-                                        placeholder="Age"
-                                        value={filterAge}
-                                        onChange={(e) => { setFilterAge(e.target.value); setPage(1); }}
-                                        className="input input-sm input-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
-                                    />
-                                    <select
-                                        value={filterTeam}
-                                        onChange={(e) => { setFilterTeam(e.target.value); setPage(1); }}
-                                        className="select select-sm select-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
-                                    >
-                                        <option value=''>All teams</option>
-                                        {teamOptions.map(t => <option key={t} value={t}>{t}</option>)}
-                                    </select>
-                                    <div className='ml-auto'>
-                                        <button
-                                            type='button'
-                                            className='btn btn-outline btn-sm ring-0 outline-0 focus:ring-0 focus:outline-0'
-                                            onClick={() => {
-                                                setSearchTerm('');
-                                                setFilterPays('');
-                                                setFilterAge('');
-                                                setFilterTeam('');
-                                                setPage(1);
-                                            }}
-                                        >
-                                            Clear filters
-                                        </button>
-                                    </div>
-                                </div>
                                 <table className="table">
                                     <thead>
                                         <tr>
@@ -219,7 +221,7 @@ const SelectTab = ({ pointTable }) => {
                                     </tbody>
                                 </table>
                                 {/* daisyUI pagination controls */}
-                                {totalPages > 1 && (
+                                {/* {totalPages > 1 && (
                                     <div className="flex justify-center mt-6">
                                         <div className="btn-group">
                                             <button
@@ -250,7 +252,12 @@ const SelectTab = ({ pointTable }) => {
                                             </button>
                                         </div>
                                     </div>
-                                )}
+                                )} */}
+
+                                {
+                                    filtered?.length > 10 && paginated?.length !== filtered?.length && <button onClick={() => setItemsToShow(itemsToShow + 10)} className='btn btn-outline text-black w-fit mx-auto mt-10 flex justify-center'>See More</button>
+                                }
+
                             </div>
                         </TabPanel>
                     )

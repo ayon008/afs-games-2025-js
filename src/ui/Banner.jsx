@@ -5,14 +5,12 @@ import Sponsor from '@/Shared/Sponsor';
 import FaArrow from '@/icons/FaArrow';
 import { antiHero, morgana } from '@/app/(Main)/layout';
 import bannerImage from '../../public/Group (5).png';
-import image1 from '../../public/Rectangle 1.png';
-import image2 from '../../public/Rectangle 2.png';
-import image3 from '../../public/Rectangle 3.png';
-import image4 from '../../public/Rectangle 4.png';
-import image5 from '../../public/Rectangle 5.png';
-import step1 from '../../public/Frame (1).png';
-import step2 from '../../public/Frame 109.png';
-import step3 from '../../public/Frame (2).png';
+import windfoil from "../../public/assets/Windfoil.jpg"
+import parawing from "../../public/assets/Parawing.jpg"
+import wingfoil from "../../public/assets/Wingfoil.jpg"
+import downwind from "../../public/assets/Downwind.jpg"
+import surffoil from "../../public/assets/Surffoil.jpg"
+import dockstart from "../../public/assets/Dockstart.jpg"
 import Join from '@/Shared/Join';
 import RegisBtn from '@/Components/RegisBtn';
 import Ici from '@/Components/Ici';
@@ -54,73 +52,83 @@ const Banner = () => {
                     <br /> to choose
                 </h1>
             </div>
-            <div className='grid grid-cols-5 w-fit mx-auto 2xl:mt-32 xl:mt-20 2xl:gap-x-10 xl:gap-x-8 gap-x-4 mt-10 px-6'>
+            <div className='grid grid-cols-6 lg:gap-x-4 gap-x-2 w-fit mx-auto 2xl:mt-32 xl:mt-20 mt-10 px-6'>
                 <div>
                     <Image
-                        className='w-full 2xl:h-[275px] xl:h-[250px] h-auto  2xl:mt-20 xl:mt-20 mt-10'
-                        src={image1}
+                        className='w-full aspect-[187/270] object-cover rounded-xl h-auto  2xl:mt-20 xl:mt-20 mt-10'
+                        src={wingfoil}
                         alt=''
                     />
-                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-semibold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Wingfoil</p>
+                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-medium  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Wingfoil</p>
                 </div>
                 <div>
                     <Image
-                        className='w-full 2xl:h-[275px] xl:h-[250px] h-auto'
-                        src={image2}
+                        className='w-full aspect-[187/270] object-cover rounded-xl h-auto'
+                        src={surffoil}
                         alt=''
                     />
-                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-semibold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Surf foil</p>
+                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-medium  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Surf foil</p>
                 </div>
                 <div>
                     <Image
-                        className='w-full 2xl:h-[275px] xl:h-[250px] h-auto  2xl:mt-20 xl:mt-20 mt-10'
-                        src={image3}
+                        className='w-full aspect-[187/270] object-cover rounded-xl h-auto  2xl:mt-20 xl:mt-20 mt-10'
+                        src={dockstart}
                         alt=''
                     />
-                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-semibold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Dockstart</p>
+                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-medium  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Dockstart</p>
                 </div>
                 <div>
                     <Image
-                        className='w-full 2xl:h-[275px] xl:h-[250px] h-auto'
-                        src={image4}
+                        className='w-full aspect-[187/270] object-cover rounded-xl h-auto'
+                        src={windfoil}
                         alt=''
                     />
-                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-semibold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Windfoil</p>
+                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-medium  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Windfoil</p>
                 </div>
                 <div>
                     <Image
-                        className='w-full 2xl:h-[275px] xl:h-[250px] h-auto 2xl:mt-20 xl:mt-20 mt-10'
-                        src={image5}
+                        className='w-full aspect-[187/270] object-cover rounded-xl h-auto 2xl:mt-20 xl:mt-20 mt-10'
+                        src={downwind}
                         alt=''
                     />
-                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-semibold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Downwind</p>
+                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-medium  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Downwind</p>
+                </div>
+                <div>
+                    <Image
+                        className='w-full aspect-[187/270] object-cover rounded-xl h-auto'
+                        src={parawing}
+                        alt=''
+                    />
+                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-medium  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Parawing</p>
                 </div>
             </div>
-            <p className='2xl:text-3xl xl:text-lg font-semibold text-white 2xl:mt-24 xl:mt-16 text-center 2xl:w-3/4 xl:w-3/4 2xl:mx-auto xl:mx-auto px-6 mt-10'>Regardless of your level or age, you can take part in this event, designed and created for our AFS customers. <span className='text-[#FFE500]'>
+            <p className='2xl:text-3xl xl:text-lg font-semibold text-[#a9a9a4] 2xl:mt-24 xl:mt-16 text-center 2xl:w-3/4 xl:w-3/4 2xl:mx-auto xl:mx-auto px-6 mt-10 '>Regardless of your level or age, you can take part in this event, designed and created for our AFS customers. <span className='text-white'>
                 Get equipped and start chaining sessions!</span></p>
 
             <h2 className={`${morgana.className} text-center text-white 2xl:text-6xl xl:text-4xl 2xl:mt-40 xl:mt-28 mt-16 text-2xl
-            `}>registration is <br /> <span className='text-[#FFE500]'>simple and quick!</span>
+            `}>registration is <span className='text-[#FFE500]'>Quick and quick!</span>
             </h2>
 
             <div className='2xl:mt-20 xl:mt-12 flex 2xl:flex-row xl:flex-row flex-col items-center justify-evenly mt-8 gap-6 2xl:gap-0 xl:gap-0 2xl:mb-48 xl:mb-32 mb-20'>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
-                    <Image src={step1} alt='' />
-                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Click on the <br /> registration link <Ici /></p>
+                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl'>01</h4>
+                    <p className='text-white font-medium 2xl:text-2xl xl:text-lg mt-4'><span className='text-[#a9a9a4]'>Click on the registration</span>  <br /> <Ici /></p>
                 </div>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
-                    <Image src={step2} alt='' />
-                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Fill in the form <br /> with your information.
+                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl'>02</h4>
+                    <p className='text-[#a9a9a4] font-medium 2xl:text-2xl xl:text-lg mt-4'>Fill in the form with your <br /> information.
                     </p>
                 </div>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
-                    <Image src={step3} alt='' />
-                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Validate your registration <br /> and receive your confirmation by email
+                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl'>03</h4>
+                    <p className='text-[#a9a9a4] font-medium 2xl:text-2xl xl:text-lg mt-4'>Validate your registration <br /> and receive your confirmation by email
                     </p>
                 </div>
             </div>
             <div className='2xl:mb-48 xl:mb-32 mb-20'>
-                <h1 className={`${antiHero.className} text-center max-w-[1080px] mx-auto text-[#FFE500] 2xl:px-20 xl:px-16 px-10 2xl:text-7xl xl:text-5xl text-2xl`}><span className='text-white '>Your goal?</span> <br />Chain sessions and add up the hours spent on the water!</h1>
+                <h1 className={`${morgana.className} text-center max-w-[1080px] mx-auto text-white 2xl:px-20 xl:px-16 px-10 2xl:text-[80px] xl:text-6xl text-3xl`}><span className=' text-[#FFE500] '>Your goal?</span> <br />
+                    <span className='inline-block mt-6 gradient-text'>Chain sessions and add <br /> up the hours spent on <br /> the water!</span>
+                </h1>
                 {/* <p className='text-center text-white text-base mt-2'>At the end of the event, you will receive your results via email!</p> */}
             </div>
             <div className=''>
