@@ -16,27 +16,27 @@ const page = () => {
                 To <span className='text-[#FFE500]'>participate</span>
             </p>
             <div className='2xl:my-20 xl:my-16 my-10 grid lg:grid-cols-4 grid-cols-1 justify-center lg:items-start px-4 max-w-[1150px] w-full mx-auto gap-10 items-center'>
-                <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
-                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl gradient-text'>01</h4>
-                    <p className='text-white/60 font-light 2xl:text-2xl xl:text-xl text-base mt-4'>
+                <div className='2xl:w-[340px] xl:w-[320px] w-full h-auto'>
+                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl gradient-text lg:text-left text-center'>01</h4>
+                    <p className='text-white/60 lg:text-left text-center font-light 2xl:text-2xl xl:text-xl text-base mt-4'>
                         Start a session at <br /> your favorite spot
                     </p>
                 </div>
-                <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
-                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl gradient-text'>02</h4>
-                    <p className='text-white/60 font-light 2xl:text-2xl xl:text-xl text-base mt-4'>
+                <div className='2xl:w-[340px] xl:w-[320px] w-full h-auto'>
+                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl gradient-text lg:text-left text-center'>02</h4>
+                    <p className='text-white/60 lg:text-left text-center font-light 2xl:text-2xl xl:text-xl text-base mt-4'>
                         Once finished, <br /> export your GPX file <br /> (tutorials will be <br />available soon)
                     </p>
                 </div>
-                <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
-                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl gradient-text'>03</h4>
-                    <p className='text-white/60 font-light 2xl:text-2xl xl:text-xl text-base mt-4'>
+                <div className='2xl:w-[340px] xl:w-[320px] w-full h-auto'>
+                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl gradient-text lg:text-left text-center'>03</h4>
+                    <p className='text-white/60 lg:text-left text-center font-light 2xl:text-2xl xl:text-xl text-base mt-4'>
                         Log in to your profile <br /> and click on <br /> "import."
                     </p>
                 </div>
-                <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
-                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl gradient-text'>04</h4>
-                    <p className='text-white/60 font-light 2xl:text-2xl xl:text-xl text-base mt-4'>
+                <div className='2xl:w-[340px] xl:w-[320px] w-full h-auto'>
+                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl gradient-text lg:text-left text-center'>04</h4>
+                    <p className='text-white/60 lg:text-left text-center font-light 2xl:text-2xl xl:text-xl text-base mt-4'>
                         Upload your file and <br /> it's validated!
                     </p>
                 </div>

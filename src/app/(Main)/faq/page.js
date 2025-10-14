@@ -16,16 +16,16 @@ const FaqPage = async () => {
         <div className=''>
             <div className='max-h-[750px] min-h-[550px] flex flex-col'>
                 <div className='m-auto'>
-                    <h1 className={`${morgana.className} text-center 2xl:text-9xl xl:text-7xl text-5xl text-white uppercase`}>GUIDES ⏐ FAQ</h1>
+                    <h1 className={`${morgana.className} text-center 2xl:text-9xl xl:text-7xl text-5xl uppercase text-[#FFE500]`}>GUIDES ⏐ FAQ</h1>
                 </div>
             </div>
-            <div className='bg-white 2xl:p-20 xl:p-20 p-6 rounded-t-[50px]'>
+            <div className='2xl:p-20 xl:p-20 p-6 rounded-t-[50px]'>
                 {
                     categories?.map((category, i) => {
                         const d = data(category);
                         return (
                             <>
-                                <h2 className={`${morgana.className} ${!i === 0 && 'mt-10'} uppercase text-center 2xl:text-7xl xl:text-5xl text-3xl`}>{category}</h2>
+                                <h2 className={`${morgana.className} ${!i === 0 && 'mt-10'} uppercase text-center 2xl:text-7xl xl:text-5xl text-3xl text-[#FFE500]`}>{category}</h2>
                                 <div className='2xl:px-20 xl:px-14 px-6 grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 2xl:mt-24 xl:mt-16 mt-10 2xl:gap-6 xl:gap-4 gap-y-6 mb-20'>
                                     {
                                         d?.map((item, i) => {
@@ -61,7 +61,7 @@ const FaqPage = async () => {
                         )
                     })
                 }
-                <div>
+                {/* <div>
                     <h2 className={`${morgana.className} mt-10 uppercase text-center 2xl:text-7xl xl:text-5xl text-3xl`}>AFS Games 2025 Rules and Regulations</h2>
                     <h3 className='my-6 text-2xl font-semibold'>Article 1: Organization</h3>
                     <p>
@@ -198,7 +198,7 @@ const FaqPage = async () => {
 
                     <h3 className='my-6 text-2xl font-semibold'>11. Applicable Texts and Jurisdiction</h3>
                     <p>These GTU are governed by the <strong>French Civil Code</strong>, the <strong>French Sports Code</strong>, the <strong>GDPR</strong>, as well as local laws applicable to participants according to their country of residence. Any dispute relating to the application of the GTU will be handled according to the competent jurisdictions in France or in accordance with local laws for international participants.</p>
-                </div>
+                </div> */}
             </div>
             <Join />
         </div>

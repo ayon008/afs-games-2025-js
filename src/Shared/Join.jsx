@@ -6,7 +6,7 @@ import RegisBtn from '@/Components/RegisBtn';
 const Join = ({ home }) => {
     return (
         <div className='bg-black'>
-            <div className={`relative flex items-start lg:flex-row flex-col justify-between max-w-[1150px] w-full mx-auto px-4 2xl:py-20 xl:py-[60px] py-10`}>
+            <div className={`relative flex items-start lg:flex-row flex-col justify-between max-w-[1150px] w-full mx-auto px-4 2xl:py-20 xl:py-[60px] py-10 gap-10`}>
                 <div className='rounded-[10px] z-40 lg:w-1/2 w-full 2xl:mt-10 xl:mt-8 mt-6'>
                     <div className={``}>
                         <Image src={logo} className='2xl:w-[176px] xl:w-[150px] w-[100px] h-auto' alt='' />
@@ -21,7 +21,7 @@ const Join = ({ home }) => {
                     </p> */}
                     </div>
                 </div>
-                <div className='z-40 flex flex-col justify-end'>
+                <div className='z-40 flex flex-col justify-end lg:ml-0 ml-4'>
                     <div className='w-fit ml-auto'>
                         <RegisBtn />
                     </div>

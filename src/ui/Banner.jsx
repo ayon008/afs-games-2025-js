@@ -111,19 +111,19 @@ const Banner = () => {
             `}>registration is <span className='text-[#FFE500]'>Quick and quick!</span>
             </h2>
 
-            <div className='2xl:mt-20 xl:mt-12 flex 2xl:flex-row xl:flex-row flex-col items-center justify-evenly mt-8 gap-6 2xl:gap-0 xl:gap-0 2xl:mb-48 xl:mb-32 mb-20'>
+            <div className='2xl:mt-20 xl:mt-12 flex 2xl:flex-row xl:flex-row flex-col items-center justify-evenly mt-8 gap-10 2xl:gap-0 xl:gap-0 2xl:mb-48 xl:mb-32 mb-20'>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
-                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl'>01</h4>
-                    <p className='text-white font-medium 2xl:text-2xl xl:text-lg mt-4'><span className='text-[#a9a9a4]'>Click on the registration</span>  <br /> <Ici /></p>
+                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl lg:text-left text-center'>01</h4>
+                    <p className='text-white font-medium 2xl:text-2xl xl:text-lg mt-4 lg:text-left text-center'><span className='text-[#a9a9a4]'>Click on the registration</span>  <br /> <Ici /></p>
                 </div>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
-                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl'>02</h4>
-                    <p className='text-[#a9a9a4] font-medium 2xl:text-2xl xl:text-lg mt-4'>Fill in the form with your <br /> information.
+                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl lg:text-left text-center'>02</h4>
+                    <p className='text-[#a9a9a4] lg:text-left text-center font-medium 2xl:text-2xl xl:text-lg mt-4'>Fill in the form with your <br /> information.
                     </p>
                 </div>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
-                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl'>03</h4>
-                    <p className='text-[#a9a9a4] font-medium 2xl:text-2xl xl:text-lg mt-4'>Validate your registration <br /> and receive your confirmation by email
+                    <h4 className='text-white 2xl:text-[80px] xl:text-6xl font-medium text-5xl lg:text-left text-center'>03</h4>
+                    <p className='text-[#a9a9a4] lg:text-left text-center font-medium 2xl:text-2xl xl:text-lg mt-4'>Validate your registration <br /> and receive your confirmation by email
                     </p>
                 </div>
             </div>
