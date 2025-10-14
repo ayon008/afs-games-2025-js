@@ -12,6 +12,7 @@ import { antiHero } from '@/Components/Font';
 import countries from '@/js/countries';
 import { FaCheck } from 'react-icons/fa';
 import uploadPdfToFirebase from '@/js/uploadPdf';
+import UserMap from '@/Components/UserMap';
 
 const Page = () => {
     const { user, updatedProfile } = useAuth();
@@ -166,6 +167,10 @@ const Page = () => {
                     </div>
                 </div>
             </form>
+            <div className='mb-8'>
+                <h2 className='text-white font-semibold mb-3'>Your City</h2>
+                <UserMap city={userInfo?.pays || user?.pays} apiKey={'AIzaSyDABGCXOjbUvFHKcywYRpICMKOnHQI1V4c'} height={300} />
+            </div>
         </div>
     );
 };

@@ -11,9 +11,8 @@ import FaArrow from '@/icons/FaArrow';
 const page = async () => {
     const data = await getAllSponsors();
     const sponsors = data?.filter(d => d?.showInHome !== 'true' && d?.showInPrize !== "true");
-    console.log(data, 'data');
-    console.log(sponsors,'sponsor');
-    
+    console.log(sponsors, 'sponsor');
+
 
     return (
         <div className=''>
@@ -41,7 +40,7 @@ const page = async () => {
                                         <div className='w-fit mx-auto 2xl:mt-10 xl:mt-8 mt-6'>
                                             <Link href={`${sponsor.sponsorName}`}>
                                                 <button className='btn bg-[#FFE500] border-none'>
-                                                    <span>{sponsor.sponsorName}</span>
+                                                    <span className='uppercase font-light'>{i === 0 ? "defiwind" : i === 1 ? "SOORUZ" : i === 2 ? "FOILING MAGZINE" : i === 3 ? "A3D" : "AP3D"}</span>
                                                     <FaArrow className={'2xl:w-[14px] 2xl:h-[14px] w-[8px] h-[8px] xl:w-[10px] xl:h-[10px] 2xl:mt-1'} color={'black'} />
                                                 </button>
                                             </Link>
