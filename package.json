@@ -39,6 +39,7 @@
     "xmldom": "^0.6.0"
   },
   "devDependencies": {
+    "@types/page": "^1.11.9",
     "@types/react-is": "^19.2.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.6",

@@ -18,10 +18,12 @@ const page = async () => {
 
     return (
         <div className="">
-            <div className="max-h-[750px] min-h-[550px] flex flex-col">
-                <h2 className={`${morgana.className} uppercase m-auto text-white 2xl:text-[120px] xl:text-7xl text-5xl`}>leaderboard</h2>
+            <div className="max-h-[750px] min-h-screen flex flex-col">
+                <div className='m-auto'>
+                    <h1 className={`${morgana.className} text-center lg:text-8xl text-5xl text-[#FFE500] uppercase`}>Leaderboard</h1>
+                </div>
             </div>
-            <div className='2xl:mt-20 xl:mt-14 mt-8 bg-white 2xl:p-20 xl:p-20 py-12 rounded-tr-[50px] rounded-tl-[50px]'>
+            <div className='2xl:p-20 xl:p-20 py-12'>
                 <SelectTab pointTable={pointTable} />
             </div>
             <Join />

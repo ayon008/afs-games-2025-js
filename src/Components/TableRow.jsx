@@ -1,25 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
+import CountryFlagList from '@/js/GetFlags';
 import profileImage from '@/../public/Profile_avatar_placeholder_large.png'
 import Image from 'next/image';
 
-const TableRow = ({ data, position, uid }) => {
-    const { Wingfoil, Windfoil, dockstart, surfFoil, dw, WatermanCrown, displayName, photoURL, total, Parawing } = data;
+const TableRow = ({ data, position, uid, onClick, displayMode = 'name' }) => {
+    const { Wingfoil, Windfoil, dockstart, surfFoil, dw, WatermanCrown, displayName, photoURL, total, Parawing, team } = data;
 
     return (
-        <tr className={`${position === 1 ? 'first' : ''}
+        <tr onClick={onClick} className={`${position === 1 ? 'first' : ''}
         ${position === 2 ? 'second' : ''} 
-        ${position === 3 ? 'third' : ''}`}>
+        ${position === 3 ? 'third' : ''} ${onClick ? 'cursor-pointer' : ''}`}>
             <th className='text-white'>{position < 10 ? `0${position}` : position}</th>
             <td>
                 <div className='flex items-center gap-2'>
+                    <CountryFlagList countries={[data?.pays]} />
                     {
                         photoURL ?
                             <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[15px] h-[15px] rounded-[50%]' src={photoURL} />
                             :
                             <Image alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[15px] h-[15px] rounded-[50%]' src={profileImage} />
                     }
-                    <h3 className='2xl:text-lg xl:text-sm text-[8px] font-semibold text-white'>{displayName}</h3>
+                    <h3 className='2xl:text-lg xl:text-sm text-[8px] font-semibold text-white'>
+                        {displayMode === 'team' ? (team || displayName) : displayName}
+                    </h3>
                 </div>
             </td>
             <td className={`2xl:text-lg xl:text-sm font-semibold text-[8px] text-white`}>
