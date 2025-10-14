@@ -24,7 +24,9 @@ const Banner = () => {
                 <p className='text-white 2xl:text-3xl xl:text-xl font-semibold text-center text-xs max-w-[1184px] mx-auto'>
                     From September 30 to November 3, navigate to your favorite spots equipped with your GPS, upload your session to your account, and accumulate session hours to top the leaderboard!
                 </p>
-                <RegisBtn />
+                <div className='flex items-center justify-center'>
+                    <RegisBtn />
+                </div>
                 <p className='text-center text-white 2xl:text-2xl xl:text-base font-medium 2xl:mt-32 xl:mt-24 text-sm mt-10 max-w-[1184px] mx-auto'>
                     The AFS GAMES is an exclusive event, <span className='text-[#FFE500]'>reserved only for customers equipped with AFS foils*</span>. This unique event highlights several foil disciplines, offering an unprecedented and immersive experience for participants. The particularity of the AFS GAMES is that they take place online!
                 </p>

@@ -67,12 +67,49 @@ li:focus {
     /* For Safari */
 }
 
+.vertical-line {
+    position: relative;
+    border-radius: 20px;
+    background: #2020204D;
+    /* your original background */
+}
+
+.gradient-text {
+    background: linear-gradient(180deg, #FFFCE4 0%, rgba(255, 252, 228, 0) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* for Firefox */
+    color: transparent;
+    /* fallback */
+}
+
+
+.vertical-line::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    /* border thickness */
+    background: linear-gradient(180deg, #FFE400 0%, rgba(255, 228, 0, 0) 100%);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+
 /* Black overlay */
 .banner::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.95) 100%);
     /* Adjust opacity as needed */
     z-index: 1;
 }

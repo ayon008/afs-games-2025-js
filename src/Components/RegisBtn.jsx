@@ -7,7 +7,7 @@ import React from 'react';
 const RegisBtn = () => {
     const { user } = useAuth();
     return (
-        <div className='w-fit mx-auto 2xl:mt-10 xl:mt-8 mt-6'>
+        <div className='2xl:mt-10 xl:mt-8 mt-6'>
             <Link href={user ? `/profile?uid=${user?.uid}` : '/register'}>
                 <button className='btn bg-[#FFE500] border-none'>
                     <span>SIGN UP</span>

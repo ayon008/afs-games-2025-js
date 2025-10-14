@@ -8,7 +8,7 @@ const CountdownTimer = () => {
     const [targetDate, setTargetData] = useState(null); // Set initial state to null
 
     // Log the date to verify it's correct
-    console.log(date?.date);
+    console.log(date?.date,'date');
 
     useEffect(() => {
         if (date?.date) {

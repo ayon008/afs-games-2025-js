@@ -11,6 +11,10 @@ import FaArrow from '@/icons/FaArrow';
 const page = async () => {
     const data = await getAllSponsors();
     const sponsors = data?.filter(d => d?.showInHome !== 'true' && d?.showInPrize !== "true");
+    console.log(data, 'data');
+    console.log(sponsors,'sponsor');
+    
+
     return (
         <div className=''>
             <div className='max-h-[750px] min-h-[550px] flex flex-col'>
@@ -48,8 +52,8 @@ const page = async () => {
                         })
                     }
                 </div>
-                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-2xl 2xl:mt-24 xl:mt-16 mt-10`}>The event podiums</h2>
-                <p className='text-[#0000007f] 2xl:text-2xl xl:text-lg text-sm font-semibold text-center 2xl:my-12 xl:my-6 my-4'>Time spent on water in wingfoil, downwind, windfoil, dockstart, surf foil</p>
+                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-2xl 2xl:mt-24 xl:mt-16 mt-10 text-white`}>event <span className='text-[#FFE500]'>podiums</span></h2>
+                <p className='text-white/60 2xl:text-2xl xl:text-lg text-sm font-semibold text-center 2xl:mt-16 xl:mt-10 mt-8'>Time spent on water in wingfoil, downwind, windfoil, dockstart, surf foil</p>
                 <Award />
             </div>
             <Join />

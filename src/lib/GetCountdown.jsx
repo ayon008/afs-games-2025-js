@@ -1,9 +1,9 @@
 'use client'
-import useAxiosSecure from "@/Hooks/useAxiosSecure";
+import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 
 const GetCountDown = () => {
-    const axiosSecure = useAxiosSecure();
+    const axiosSecure = useAxiosPublic();
     const { isLoading, isError, error, data: date, refetch } = useQuery({
         queryKey: ['date'],
         queryFn: async () => {

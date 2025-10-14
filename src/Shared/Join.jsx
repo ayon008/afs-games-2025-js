@@ -21,12 +21,14 @@ const Join = ({ home }) => {
                     </p> */}
                     </div>
                 </div>
-                <div className='z-40'>
-                    <RegisBtn />
+                <div className='z-40 flex flex-col justify-end'>
+                    <div className='w-fit ml-auto'>
+                        <RegisBtn />
+                    </div>
                     <div className='lg:mt-44 mt-10'>
                         <ul className='list-disc text-white space-y-2'>
                             <li className='text-lg [&::marker]:text-[#FFE500] [&::marker]:text-2xl'>Price : Free</li>
-                            <li className='text-lg [&::marker]:text-[#FFE500] [&::marker]:text-2xl'>Date : Not Yet</li>
+                            <li className='text-lg [&::marker]:text-[#FFE500] [&::marker]:text-2xl'>Date : 8th OCT - 15th NOV</li>
                         </ul>
                     </div>
                 </div>
