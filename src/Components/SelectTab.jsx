@@ -141,7 +141,7 @@ const SelectTab = ({ pointTable }) => {
                                     const pos = sortedAll.indexOf(d) + 1;
                                     return (
                                         <React.Fragment key={d?.uid || i}>
-                                            <TableRow data={d} uid={userData?.uid} position={pos} onClick={() => handleOpen(pos)} displayMode={displayMode} />
+                                            <TableRow data={d} uid={userData?.uid} position={pos} onClick={() => handleOpen(pos)} displayMode={displayMode} isOpen={index === pos && open} />
                                             {index === pos && open && (
                                                 <tr>
                                                     <td colSpan={'9'} className='p-0'>
