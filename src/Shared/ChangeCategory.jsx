@@ -15,7 +15,7 @@ const ChangeCategory = () => {
     const handleChange = async (category) => {
         try {
             const result = await Swal.fire({
-                title: "Change Discipline?",
+                title: "Add ?",
                 text: "Do you want to participate in another discipline?",
                 icon: "warning",
                 showCancelButton: true,

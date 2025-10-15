@@ -156,22 +156,6 @@ const Session = ({ uid }) => {
 
   return (
     <div className="text-white lg:my-20 my-10">
-      {preview && (
-        <div className="bg-black/70 p-3 rounded mb-4 flex items-center gap-4">
-          <a className="text-white underline" href={preview.link} target="_blank" rel="noreferrer">
-            {preview.link}
-          </a>
-          {preview.imageUrl && (
-            <div className="h-12 w-32 relative rounded overflow-hidden">
-              <Image src={preview.imageUrl} alt="preview" fill style={{ objectFit: "cover" }} />
-            </div>
-          )}
-          <button className="btn btn-sm btn-ghost ml-auto" onClick={() => setPreview(null)}>
-            Close
-          </button>
-        </div>
-      )}
-
       <h2 className="font-semibold 2xl:text-5xl xl:text-3xl">Your Session History</h2>
       <p className="2xl:text-2xl xl:text-lg 2xl:mt-14 xl:mt-7 font-semibold">Your Uploaded Sessions</p>
 
