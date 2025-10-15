@@ -130,7 +130,7 @@ const page = async ({ searchParams }) => {
                         <UserMap apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY} height={400} />
                     </div>
                 </div>
-                <div className=''>
+                <div className='mt-10'>
                     <h2 className='font-semibold 2xl:text-5xl xl:text-3xl text-white'>You are in the rankings</h2>
                     <p className='2xl:text-2xl xl:text-lg 2xl:mt-14 xl:mt-7 font-semibold text-white'>Time spent on the water during the event</p>
                     <hr className='mt-2 mb-4' />
