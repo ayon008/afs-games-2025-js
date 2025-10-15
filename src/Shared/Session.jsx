@@ -115,7 +115,7 @@ const Session = ({ uid }) => {
       end
     )}&${styleParams}${keyParam}`;
 
-    const appLeaderboardUrl = `https://afs-games-2025-js.vercel.app/leaderboard/#${uid}`;
+    const appLeaderboardUrl = `https://afs-games-2025-js.vercel.app/leaderboard#${uid}`;
     const shareText = `🚀 Check out this session from AFS Games!\n\n🌍 View on Leaderboard:\n${appLeaderboardUrl}`;
 
     // Show preview
