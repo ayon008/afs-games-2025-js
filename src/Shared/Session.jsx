@@ -6,93 +6,104 @@ import { FaShareSquare } from "react-icons/fa";
 const Session = ({ uid }) => {
   const { sessionHistory, isLoading, isError, error } = useGetSessionHistory(uid);
   console.log(sessionHistory,'hi');
-  const [shareModal, setShareModal] = useState({ open: false, imageUrl: '', mapLink: '', filename: '' });
+  // no modal; share directly from the icon
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
+  // Encode an array of [lng, lat] GeoJSON points into a Google encoded polyline
+  const encodePolyline = (coords) => {
+    if (!Array.isArray(coords) || coords.length === 0) return '';
+    // convert to [lat, lng]
+    const points = coords.map((p) => [p[1], p[0]]);
+    let lastLat = 0;
+    let lastLng = 0;
+    let result = '';
 
-  const openShareFor = (singleHistory) => {
-    // safe access to coordinates: geojson.features[0].geometry.coordinates
-    const coords = singleHistory?.geojson?.features?.[0]?.geometry?.coordinates;
+    const encodeValue = (v) => {
+      let sv = Math.round(v * 1e5);
+      sv = sv < 0 ? ~(sv << 1) : sv << 1;
+      let chunks = '';
+      while (sv >= 0x20) {
+        chunks += String.fromCharCode((0x20 | (sv & 0x1f)) + 63);
+        sv >>= 5;
+      }
+      chunks += String.fromCharCode(sv + 63);
+      return chunks;
+    };
+
+    for (let i = 0; i < points.length; i++) {
+      const lat = points[i][0];
+      const lng = points[i][1];
+      const dLat = lat - lastLat;
+      const dLng = lng - lastLng;
+      result += encodeValue(dLat);
+      result += encodeValue(dLng);
+      lastLat = lat;
+      lastLng = lng;
+    }
+    return result;
+  };
+
+  const openShareFor = async (singleHistory) => {
+    const coords = singleHistory?.geojson?.features?.[0]?.geometry?.coordinates || singleHistory?.coordinates || null;
     const filename = singleHistory?.filename || 'session';
-    if (!coords || !Array.isArray(coords) || coords.length < 2) {
-      // fallback: open share with filename only
-      const mapLink = '';
-      setShareModal({ open: true, imageUrl: '', mapLink, filename });
-      return;
-    }
-    // coords can be [lng, lat] or an array of points [[lng,lat],[lng,lat],...]
-    let lng, lat;
-    if (typeof coords[0] === 'number' && typeof coords[1] === 'number') {
-      lng = coords[0];
-      lat = coords[1];
-    } else if (Array.isArray(coords[0])) {
-      // pick middle point for better centering
-      const mid = Math.floor(coords.length / 2);
-      const pt = coords[mid] || coords[0];
-      lng = pt[0];
-      lat = pt[1];
-    } else {
-      const mapLink = '';
-      setShareModal({ open: true, imageUrl: '', mapLink, filename });
+    if (!coords || !Array.isArray(coords) || coords.length < 1) {
+      // fallback: nothing to share
+      alert('No coordinates available for this session')
       return;
     }
 
-    // Google Maps link (opens in browser)
-    const mapLink = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+    // Normalize to array of points [lng, lat]
+    const points = Array.isArray(coords[0]) ? coords : [coords];
 
-    // Build Static Maps image URL
-    // size and zoom can be adjusted; scale=2 for higher-res
-    const zoom = 13;
+    // center on middle
+    const mid = points[Math.floor(points.length / 2)];
+    const centerLat = mid[1];
+    const centerLng = mid[0];
+
     const size = '800x400';
-    const marker = `color:red|${lat},${lng}`;
+    const zoom = 12;
+    const encoded = encodePolyline(points);
+    const path = `enc:${encoded}`;
+
+    const start = `${points[0][1]},${points[0][0]}`;
+    const end = `${points[points.length - 1][1]},${points[points.length - 1][0]}`;
+
     const keyParam = apiKey ? `&key=${apiKey}` : '';
-    const imageUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&size=${size}&scale=2&markers=${encodeURIComponent(marker)}${keyParam}`;
+    const imageUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${size}&zoom=${zoom}&path=weight:3%7Ccolor:0x0000ff%7C${encodeURIComponent(path)}&markers=color:green%7Clabel:S%7C${encodeURIComponent(start)}&markers=color:red%7Clabel:E%7C${encodeURIComponent(end)}${keyParam}`;
 
-    setShareModal({ open: true, imageUrl, mapLink, filename });
-  };
-
-  const closeShare = () => setShareModal({ open: false, imageUrl: '', mapLink: '', filename: '' });
-
-  const copyToClipboard = async (text) => {
+    // If the route is short, craft a Google Maps directions URL including intermediate waypoints
+    let mapLink = '';
     try {
-      await navigator.clipboard.writeText(text);
-      alert('Copied to clipboard');
+      if (points.length <= 10) {
+        // include intermediate points (exclude first/last)
+        const waypoints = points.slice(1, -1).map((pt) => `${pt[1]},${pt[0]}`).join('|');
+        const base = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(start)}&destination=${encodeURIComponent(end)}&travelmode=driving`;
+        mapLink = waypoints ? `${base}&waypoints=${encodeURIComponent(waypoints)}` : base;
+      } else {
+        // for long tracks, opening the static image is more reliable (shows full encoded path)
+        mapLink = imageUrl;
+      }
     } catch (e) {
-      console.error('Copy failed', e);
-      alert('Copy failed');
+      console.warn('Failed to build map link with waypoints, falling back to static image', e);
+      mapLink = imageUrl;
     }
-  };
 
-  const downloadImage = async (url, filename) => {
-    if (!url) return alert('No image available');
-    try {
-      const res = await fetch(url);
-      const blob = await res.blob();
-      const urlObj = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = urlObj;
-      a.download = filename || 'map.png';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(urlObj);
-    } catch (e) {
-      console.error(e);
-      alert('Download failed');
-    }
-  };
+    const shareUrl = mapLink || imageUrl || '';
 
-  const tryWebShare = async (title, text, url) => {
     if (navigator.share) {
       try {
-        await navigator.share({ title, text, url });
+        await navigator.share({ title: filename, text: 'Check out this session', url: shareUrl });
+        return;
       } catch (e) {
+        // fall through to open link
         console.warn('Web share failed', e);
       }
-    } else {
-      alert('Web Share not supported on this browser');
     }
+
+    if (shareUrl) window.open(shareUrl, '_blank')
   };
+
+  // modal removed — no closeShare needed
   
 
   return (
@@ -159,39 +170,7 @@ const Session = ({ uid }) => {
         </table>
       </div>
 
-      {/* Share modal */}
-      {shareModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-          <div className="bg-white rounded-lg max-w-xl w-full p-4">
-            <div className="flex justify-between items-center">
-              <h3 className="font-semibold">Share {shareModal.filename}</h3>
-              <button onClick={closeShare} className="btn btn-ghost">Close</button>
-            </div>
-            <div className="mt-3">
-              {shareModal.imageUrl ? (
-                <img src={shareModal.imageUrl} alt="map" className="w-full h-48 object-cover rounded" />
-              ) : (
-                <div className="text-sm text-gray-600">No location data available for this session.</div>
-              )}
-            </div>
-            <div className="mt-4 flex gap-2">
-              {shareModal.mapLink && (
-                <>
-                  <button className="btn" onClick={() => copyToClipboard(shareModal.mapLink)}>Copy Map Link</button>
-                  <a className="btn" href={shareModal.mapLink} target="_blank" rel="noreferrer">Open in Google Maps</a>
-                </>
-              )}
-              {shareModal.imageUrl && (
-                <>
-                  <button className="btn" onClick={() => copyToClipboard(shareModal.imageUrl)}>Copy Image URL</button>
-                  <button className="btn" onClick={() => downloadImage(shareModal.imageUrl, `${shareModal.filename}-map.png`)}>Download Image</button>
-                  <button className="btn" onClick={() => tryWebShare(shareModal.filename, 'Check out my session', shareModal.imageUrl)}>Share</button>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Modal removed: sharing happens directly when user clicks the share icon */}
     </div>
   );
 };
