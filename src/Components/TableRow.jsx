@@ -11,7 +11,7 @@ const TableRow = ({ data, position, uid, onClick, displayMode = 'name', isOpen =
     const activeBgClass = isOpen ? 'bg-white text-black' : (isCurrent ? 'bg-[#FFE500] text-black' : '');
 
     return (
-        <tr onClick={onClick} className={`${position === 1 ? 'first' : ''}
+        <tr id={uid} onClick={onClick} className={`${position === 1 ? 'first' : ''}
         ${position === 2 ? 'second' : ''} 
         ${position === 3 ? 'third' : ''} ${onClick ? 'cursor-pointer' : ''}`}>
             <th className={`${activeBgClass ? activeBgClass + ' rounded-l-xl px-2' : 'text-white'}`}>{position < 10 ? `0${position}` : position}</th>

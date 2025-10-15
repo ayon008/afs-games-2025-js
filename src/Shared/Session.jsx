@@ -5,10 +5,108 @@ import { FaShareSquare } from "react-icons/fa";
 
 const Session = ({ uid }) => {
   const { sessionHistory, isLoading, isError, error } = useGetSessionHistory(uid);
-  console.log(sessionHistory,'hi');
+  console.log(sessionHistory, 'hi');
   // no modal; share directly from the icon
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
+  // Snazzy-style map design (converted to Static Maps 'style' params)
+  const mapStyle = [
+    {
+      featureType: 'water',
+      elementType: 'geometry',
+      stylers: [{ color: '#e9e9e9' }, { lightness: 17 }],
+    },
+    {
+      featureType: 'landscape',
+      elementType: 'geometry',
+      stylers: [{ color: '#f5f5f5' }, { lightness: 20 }],
+    },
+    {
+      featureType: 'road.highway',
+      elementType: 'geometry.fill',
+      stylers: [{ color: '#ffffff' }, { lightness: 17 }],
+    },
+    {
+      featureType: 'road.highway',
+      elementType: 'geometry.stroke',
+      stylers: [{ color: '#ffffff' }, { lightness: 29 }, { weight: 0.2 }],
+    },
+    {
+      featureType: 'road.arterial',
+      elementType: 'geometry',
+      stylers: [{ color: '#ffffff' }, { lightness: 18 }],
+    },
+    {
+      featureType: 'road.local',
+      elementType: 'geometry',
+      stylers: [{ color: '#ffffff' }, { lightness: 16 }],
+    },
+    {
+      featureType: 'poi',
+      elementType: 'geometry',
+      stylers: [{ color: '#f5f5f5' }, { lightness: 21 }],
+    },
+    {
+      featureType: 'poi.park',
+      elementType: 'geometry',
+      stylers: [{ color: '#dedede' }, { lightness: 21 }],
+    },
+    {
+      elementType: 'labels.text.stroke',
+      stylers: [{ visibility: 'on' }, { color: '#ffffff' }, { lightness: 16 }],
+    },
+    {
+      elementType: 'labels.text.fill',
+      stylers: [{ saturation: 36 }, { color: '#333333' }, { lightness: 40 }],
+    },
+    { elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
+    {
+      featureType: 'transit',
+      elementType: 'geometry',
+      stylers: [{ color: '#f2f2f2' }, { lightness: 19 }],
+    },
+    {
+      featureType: 'administrative',
+      elementType: 'geometry.fill',
+      stylers: [{ color: '#fefefe' }, { lightness: 20 }],
+    },
+    {
+      featureType: 'administrative',
+      elementType: 'geometry.stroke',
+      stylers: [{ color: '#fefefe' }, { lightness: 17 }, { weight: 1.2 }],
+    },
+  ];
+
+  const mapStyleToStaticParams = (styleArray) => {
+    return styleArray
+      .map((rule) => {
+        const parts = [];
+        if (rule.featureType) parts.push(`feature:${rule.featureType}`);
+        if (rule.elementType) parts.push(`element:${rule.elementType}`);
+        const stylers = rule.stylers || [];
+        stylers.forEach((styler) => {
+          for (const k in styler) {
+            const v = styler[k];
+            if (k === 'color') {
+              const hex = String(v).replace('#', '');
+              parts.push(`color:0x${hex}`);
+            } else if (k === 'lightness') {
+              parts.push(`lightness:${v}`);
+            } else if (k === 'visibility') {
+              parts.push(`visibility:${v}`);
+            } else if (k === 'weight') {
+              parts.push(`weight:${v}`);
+            } else if (k === 'saturation') {
+              parts.push(`saturation:${v}`);
+            } else {
+              parts.push(`${k}:${v}`);
+            }
+          }
+        });
+        return `style=${encodeURIComponent(parts.join('|'))}`;
+      })
+      .join('&');
+  };
   // Encode an array of [lng, lat] GeoJSON points into a Google encoded polyline
   const encodePolyline = (coords) => {
     if (!Array.isArray(coords) || coords.length === 0) return '';
@@ -68,8 +166,9 @@ const Session = ({ uid }) => {
     const start = `${points[0][1]},${points[0][0]}`;
     const end = `${points[points.length - 1][1]},${points[points.length - 1][0]}`;
 
-    const keyParam = apiKey ? `&key=${apiKey}` : '';
-    const imageUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${size}&zoom=${zoom}&path=weight:3%7Ccolor:0x0000ff%7C${encodeURIComponent(path)}&markers=color:green%7Clabel:S%7C${encodeURIComponent(start)}&markers=color:red%7Clabel:E%7C${encodeURIComponent(end)}${keyParam}`;
+  const keyParam = apiKey ? `&key=${apiKey}` : '';
+  const styleParams = mapStyleToStaticParams(mapStyle);
+  const imageUrl = `https://maps.googleapis.com/maps/api/staticmap?size=${size}&zoom=${zoom}&path=weight:3%7Ccolor:0x0000ff%7C${encodeURIComponent(path)}&markers=color:green%7Clabel:S%7C${encodeURIComponent(start)}&markers=color:red%7Clabel:E%7C${encodeURIComponent(end)}&${styleParams}${keyParam}`;
 
     // If the route is short, craft a Google Maps directions URL including intermediate waypoints
     let mapLink = '';
@@ -88,7 +187,8 @@ const Session = ({ uid }) => {
       mapLink = imageUrl;
     }
 
-    const shareUrl = mapLink || imageUrl || '';
+    const appLeaderboardUrl = `https://afs-games-2025-js.vercel.app/leaderboard/#${uid}`;
+    const shareUrl = mapLink || imageUrl || appLeaderboardUrl || '';
 
     if (navigator.share) {
       try {
@@ -100,8 +200,10 @@ const Session = ({ uid }) => {
             const fileName = `${filename}-map.png`;
             const file = new File([blob], fileName, { type: blob.type || 'image/png' });
 
+            const text = `Check out this session. View leaderboard: ${appLeaderboardUrl}`;
+            // Share only the image file and include the leaderboard URL in text/url fields
             if (navigator.canShare && navigator.canShare({ files: [file] })) {
-              await navigator.share({ files: [file], title: filename, text: 'Check out this session' });
+              await navigator.share({ files: [file], title: filename, text, url: appLeaderboardUrl });
               return;
             }
           } catch (fetchErr) {
@@ -110,8 +212,8 @@ const Session = ({ uid }) => {
           }
         }
 
-        // Fallback: share the URL (mapLink or imageUrl)
-        await navigator.share({ title: filename, text: 'Check out this session', url: shareUrl });
+        // Fallback: share the app leaderboard link so recipients can view the site
+        await navigator.share({ title: filename, text: `Check out this session. View leaderboard: ${appLeaderboardUrl}`, url: appLeaderboardUrl });
         return;
       } catch (e) {
         // fall through to open link
@@ -123,7 +225,7 @@ const Session = ({ uid }) => {
   };
 
   // modal removed — no closeShare needed
-  
+
 
   return (
     <div className="text-white lg:my-20 my-10 ">
