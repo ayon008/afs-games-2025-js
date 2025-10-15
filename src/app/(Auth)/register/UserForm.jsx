@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import countries from '@/js/countries';
 import useAxiosPublic from '@/Hooks/useAxiosPublic';
 import uploadPdfToFirebase from '@/js/uploadPdf';
+import sendDataToWebhook from '@/js/kalviyoSubscribe';
 // import sendDataToWebhook from '@/js/kalviyoSubscribe';
 
 const UserForm = () => {
@@ -60,7 +61,7 @@ const UserForm = () => {
             // Update user profile
             await updatedProfile(name, user?.photoURL);
             try {
-                // await sendDataToWebhook({ email, name, surName, pays });
+                await sendDataToWebhook({ email, name, surName, pays });
                 const userData = { name, surName, city, pays, age, team, ...user, invoiceURL, ...categories, approved: false };
                 await axiosPublic.post('/user', userData);
 

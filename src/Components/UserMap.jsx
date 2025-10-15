@@ -1,4 +1,6 @@
 "use client"
+import useAuth from '@/Hooks/useAuth';
+import GetUserData from '@/lib/getUserData';
 import React, { useEffect, useRef, useState } from 'react';
 
 const defaultStyle = [
@@ -85,22 +87,22 @@ const defaultStyle = [
     },
     {
         "elementType": "labels.icon",
-        "stylers": [ { "visibility": "off" } ]
+        "stylers": [{ "visibility": "off" }]
     },
     {
         "featureType": "transit",
         "elementType": "geometry",
-        "stylers": [ { "color": "#f2f2f2" }, { "lightness": 19 } ]
+        "stylers": [{ "color": "#f2f2f2" }, { "lightness": 19 }]
     },
     {
         "featureType": "administrative",
         "elementType": "geometry.fill",
-        "stylers": [ { "color": "#fefefe" }, { "lightness": 20 } ]
+        "stylers": [{ "color": "#fefefe" }, { "lightness": 20 }]
     },
     {
         "featureType": "administrative",
         "elementType": "geometry.stroke",
-        "stylers": [ { "color": "#fefefe" }, { "lightness": 17 }, { "weight": 1.2 } ]
+        "stylers": [{ "color": "#fefefe" }, { "lightness": 17 }, { "weight": 1.2 }]
     }
 ];
 
@@ -119,11 +121,14 @@ function loadScript(src) {
     });
 }
 
-const UserMap = ({ city, apiKey, style = defaultStyle, height = 300 }) => {
+const UserMap = ({ apiKey, style = defaultStyle, height = 300 }) => {
     const mapRef = useRef(null);
     const containerRef = useRef(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const { user, updatedProfile } = useAuth();
+    const { isLoading, isError, userInfo, refetch } = GetUserData(user?.uid);
+    const city = userInfo?.city;
 
     useEffect(() => {
         if (!city) return;
@@ -169,6 +174,7 @@ const UserMap = ({ city, apiKey, style = defaultStyle, height = 300 }) => {
 
     return (
         <div>
+            <h2 className='text-white font-semibold mb-3'>Your City ${userInfo?.city}</h2>
             {error && <div className="text-red-500 text-sm">{error}</div>}
             {!error && !city && <div className="text-sm text-gray-400">City not provided</div>}
             <div ref={containerRef} style={{ width: '100%', height: `${height}px` }} className='rounded-md overflow-hidden' />

@@ -167,10 +167,7 @@ const Page = () => {
                     </div>
                 </div>
             </form>
-            <div className='my-8'>
-                <h2 className='text-white font-semibold mb-3'>Your City</h2>
-                <UserMap city={userInfo?.city} apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY} height={400} />
-            </div>
+            
         </div>
     );
 };

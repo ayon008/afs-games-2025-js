@@ -12,10 +12,20 @@ const ChangeCategory = () => {
     const uid = userInfo?.uid;
     console.log(userInfo);
 
-
     const handleChange = async (category) => {
         try {
-            console.log("clicked");
+            const result = await Swal.fire({
+                title: "Change Discipline?",
+                text: "Do you want to participate in another discipline?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#22c55e", // Tailwind green-500
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, change it!",
+                cancelButtonText: "Cancel",
+            });
+
+            if (!result.isConfirmed) return; // stop if user cancels
 
             const response = await axiosSecure.patch(`/changeCategory?category=${category}&uid=${uid}`);
 
@@ -35,7 +45,6 @@ const ChangeCategory = () => {
                     text: response.data.message || "No updates were applied.",
                 });
             }
-
         } catch (error) {
             console.error(error);
             Swal.fire({
@@ -45,6 +54,7 @@ const ChangeCategory = () => {
             });
         }
     };
+
 
 
     return (

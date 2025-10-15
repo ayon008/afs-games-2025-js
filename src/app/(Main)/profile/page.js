@@ -1,6 +1,7 @@
 import { antiHero } from '@/Components/Font';
 import TableHead from '@/Components/TableHead';
 import TableRow from '@/Components/TableRow';
+import UserMap from '@/Components/UserMap';
 import FaArrow from '@/icons/FaArrow';
 import GetSessionHistory from '@/js/GetSessionHistory';
 import getSurroundingData from '@/js/getSortedData';
@@ -68,6 +69,8 @@ const page = async ({ searchParams }) => {
     const uid = searchParams.uid;
     // Point Table
     let pointTable = await getUserLeaderBoard();
+    console.log(pointTable, 'ayon');
+
     // User point table
     const userPointTable = pointTable?.find((d) => d?.uid === uid);
     // User position
@@ -115,7 +118,19 @@ const page = async ({ searchParams }) => {
                     </table>
                 </div>
             </div>
-            <div className='2xl:p-36 xl:p-20 px-6 py-10 rounded-t-[50px]'>
+            <div className='2xl:px-36 xl:px-20 px-6 rounded-t-[50px]'>
+                <div className='flex items-start justify-between md:flex-row flex-col gap-10 lg:mt-20 mt-10 '>
+                    <div className='md:w-1/2 w-full'>
+                        {/* Session History */}
+                        <Session uid={uid} />
+
+                        {/*  Change Category*/}
+                        <ChangeCategory />
+                    </div>
+                    <div className='md:w-1/2 w-full'>
+                        <UserMap apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY} height={400} />
+                    </div>
+                </div>
                 <div className=''>
                     <h2 className='font-semibold 2xl:text-5xl xl:text-3xl text-white'>You are in the rankings</h2>
                     <p className='2xl:text-2xl xl:text-lg 2xl:mt-14 xl:mt-7 font-semibold text-white'>Time spent on the water during the event</p>
@@ -141,12 +156,6 @@ const page = async ({ searchParams }) => {
                         </span>
                     </div>
                 </div>
-                {/* Session History */}
-                <Session uid={uid} />
-
-                {/*  Change Category*/}
-                <ChangeCategory />
-
                 {/* Upload Data */}
                 <div className='2xl:mt-20 xl:mt-14 mt-8 flex 2xl:flex-row xl:flex-row flex-col w-full gap-10'>
                     <Link href={'/profile/uploadUserData'} className='2xl:w-1/2 xl:w-1/2 w-full 2xl:h-[240px] xl:h-[200px] border border-white rounded-lg bg-black hover:bg-gray-800 duration-150 transition-all'>
@@ -162,6 +171,7 @@ const page = async ({ searchParams }) => {
                         </button>
                     </Link>
                 </div>
+
             </div>
             <Join />
         </div>
