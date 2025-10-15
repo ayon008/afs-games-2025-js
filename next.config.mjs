@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename)
 
 const nextConfig = {
     images: {
-        domains: ['i.ibb.co', 'cdn.jsdelivr.net', 'lh3.googleusercontent.com'], // Add other domains as needed
+        domains: ['i.ibb.co', 'cdn.jsdelivr.net', 'lh3.googleusercontent.com', 'maps.googleapis.com'], // Add other domains as needed
     },
     webpack: (config) => {
         // ensure '@' alias resolves to ./src during webpack builds
