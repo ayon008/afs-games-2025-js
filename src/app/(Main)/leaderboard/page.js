@@ -7,8 +7,6 @@ const SelectTab = dynamic(() => import('@/Components/SelectTab'), {
     ssr: false, // This ensures it will only be rendered on the client side
 });
 
-export const pointTable = await getUserLeaderBoard();
-
 const page = async () => {
     const pointTable = await getUserLeaderBoard();
     // Set the target date as November 1, 2024, 8 AM in France time (CET/CEST)
