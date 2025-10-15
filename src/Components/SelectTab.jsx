@@ -134,7 +134,7 @@ const SelectTab = ({ pointTable }) => {
             <div className='w-full overflow-x-auto'>
                 <div className="overflow-x-auto w-full 2xl:mt-10 xl:mt-6 mt-3">
                     <table className="table">
-                                <TableHead profile={true} tableHead={['#', 'Participant', 'Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'DW', 'Parawing', 'Total Time']} />
+                        <TableHead profile={true} tableHead={['#', 'Participant', 'Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'DW', 'Parawing', 'Total Time']} />
                         <tbody>
                             {
                                 paginatedAll?.map((d, i) => {
@@ -158,13 +158,13 @@ const SelectTab = ({ pointTable }) => {
                                                             </div>
                                                             <div className='border-r-2 border-[#FFF] 2xl:ml-2 xl:ml-2'>
                                                                 <div className='2xl:w-fit 2xl:mx-auto xl:w-fit xl:mx-auto'>
-                                                                    <h2 className='2xl:text-3xl xl:text-xl text-xs font-semibold text-white'>{d[`${categories[tabIndex]}Session`]}</h2>
+                                                                    <h2 className='2xl:text-3xl xl:text-xl text-xs font-semibold text-white'>{d?.session}</h2>
                                                                     <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>TOTAL NUMBER OF SESSIONS</p>
                                                                 </div>
                                                             </div>
                                                             <div>
                                                                 <div className='w-fit 2xl:ml-auto xl:ml-auto'>
-                                                                    <h2 className='2xl:text-3xl xl:text-xl text-xs font-semibold text-white'>{(d[`${categories[tabIndex]}Distance`] || 0).toFixed(2)} KM</h2>
+                                                                    <h2 className='2xl:text-3xl xl:text-xl text-xs font-semibold text-white'>{d?.distance.toFixed(2)}KM</h2>
                                                                     <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>TOTAL DISTANCE</p>
                                                                 </div>
                                                             </div>
