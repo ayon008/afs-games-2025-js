@@ -12,7 +12,7 @@ const Categories = () => {
     const router = useRouter();
 
     const onSubmit = async (data) => {
-        if (!data.Wingfoil && !data.Windfoil && !data.Downwind && !data.Dockstart && !data.Surffoil && !data.WatermanCrown) {
+        if (!data.Wingfoil && !data.Windfoil && !data.Downwind && !data.Dockstart && !data.Surffoil && !data.Parawing) {
             Swal.fire({
                 title: 'Erreur',
                 text: 'Please select at least one category.',

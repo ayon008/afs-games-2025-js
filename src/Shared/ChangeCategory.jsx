@@ -48,20 +48,20 @@ const ChangeCategory = () => {
 
 
     return (
-        <div className="lg:my-20 my-10">
+        <div className="lg:my-20 my-10 text-white">
             <h2 className="font-semibold 2xl:text-5xl xl:text-3xl">
                 Your Register Category
             </h2>
             <p className="2xl:text-2xl xl:text-lg 2xl:mt-14 xl:mt-7 font-semibold">
                 Want to participate another category?
             </p>
-            <div className='mt-10 overflow-x-hidden lg:w-1/2 w-full'>
+            <div className='mt-10 overflow-x-hidden w-full'>
                 <table className='table'>
                     <thead>
-                        <tr>
+                        <tr className='text-white'>
                             <th>#</th>
                             <th>Category</th>
-                            <th>Action</th>
+                            <th className='text-right'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,9 +75,12 @@ const ChangeCategory = () => {
                                         <td className='font-medium'>
                                             Dockstart
                                         </td>
-                                        <td>
+                                        <td className='text-right'>
                                             {
-                                                userInfo?.Dockstart ? <button className='btn btn-outline text-red-500' disabled>
+                                                userInfo?.Dockstart ? <button className="btn border text-green-500 border-green-500 hover:bg-green-500 hover:text-black
+               disabled:border-[#FFE500] disabled:text-[#FFE500] disabled:hover:bg-[#FFE500]
+               disabled:hover:text-black"
+                                                    disabled>
                                                     Participated
                                                 </button>
                                                     :
@@ -92,10 +95,12 @@ const ChangeCategory = () => {
                                         <td className='font-medium'>
                                             Downwind
                                         </td>
-                                        <td>
+                                        <td className='text-right'>
                                             {
                                                 userInfo?.Downwind
-                                                    ? <button className='btn btn-outline text-red-500' disabled>
+                                                    ? <button className="btn border text-green-500 border-green-500 hover:bg-green-500 hover:text-black
+               disabled:border-[#FFE500] disabled:text-[#FFE500] disabled:hover:bg-[#FFE500]
+               disabled:hover:text-black" disabled>
                                                         Participated
                                                     </button>
                                                     :
@@ -110,10 +115,12 @@ const ChangeCategory = () => {
                                         <td className='font-medium'>
                                             Surffoil
                                         </td>
-                                        <td>
+                                        <td className='text-right'>
                                             {
                                                 userInfo?.Surffoil
-                                                    ? <button className='btn btn-outline text-red-500' disabled>
+                                                    ? <button className="btn border text-green-500 border-green-500 hover:bg-green-500 hover:text-black
+               disabled:border-[#FFE500] disabled:text-[#FFE500] disabled:hover:bg-[#FFE500]
+               disabled:hover:text-black" disabled>
                                                         Participated
                                                     </button>
                                                     :
@@ -128,10 +135,12 @@ const ChangeCategory = () => {
                                         <td className='font-medium'>
                                             Windfoil
                                         </td>
-                                        <td>
+                                        <td className='text-right'>
                                             {
                                                 userInfo?.Windfoil
-                                                    ? <button className='btn btn-outline text-red-500' disabled>
+                                                    ? <button className="btn border text-green-500 border-green-500 hover:bg-green-500 hover:text-black
+               disabled:border-[#FFE500] disabled:text-[#FFE500] disabled:hover:bg-[#FFE500]
+               disabled:hover:text-black" disabled>
                                                         Participated
                                                     </button>
                                                     :
@@ -146,10 +155,12 @@ const ChangeCategory = () => {
                                         <td className='font-medium'>
                                             Wingfoil
                                         </td>
-                                        <td>
+                                        <td className='text-right'>
                                             {
                                                 userInfo?.Wingfoil
-                                                    ? <button className='btn btn-outline text-red-500' disabled>
+                                                    ? <button className="btn border text-green-500 border-green-500 hover:bg-green-500 hover:text-black
+               disabled:border-[#FFE500] disabled:text-[#FFE500] disabled:hover:bg-[#FFE500]
+               disabled:hover:text-black" disabled>
                                                         Participated
                                                     </button>
                                                     :
@@ -164,10 +175,12 @@ const ChangeCategory = () => {
                                         <td className='font-medium'>
                                             Parawing
                                         </td>
-                                        <td>
+                                        <td className='text-right'>
                                             {
                                                 userInfo?.Parawing
-                                                    ? <button className='btn btn-outline text-red-500' disabled>
+                                                    ? <button className="btn border text-green-500 border-green-500 hover:bg-green-500 hover:text-black
+               disabled:border-[#FFE500] disabled:text-[#FFE500] disabled:hover:bg-[#FFE500]
+               disabled:hover:text-black" disabled>
                                                         Participated
                                                     </button>
                                                     :

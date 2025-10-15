@@ -5,7 +5,7 @@ import CountdownTimer from '@/ui/CountDown';
 
 const page = () => {
     return (
-        <div className='2xl:pt-36 xl:pt-32 pt-24'>
+        <div className='2xl:pt-72 xl:pt-56 pt-28'>
             <div className='w-fit mx-auto'>
                 <CountdownTimer />
             </div>

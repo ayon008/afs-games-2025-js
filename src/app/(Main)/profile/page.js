@@ -8,6 +8,7 @@ import sortDataByTime from '@/lib/getDataByCategory';
 import getUserInfo from '@/lib/getUserInfo';
 import getUserLeaderBoard from '@/lib/getUserLeaderBoard';
 import ChangeCategory from '@/Shared/ChangeCategory';
+import Join from '@/Shared/Join';
 import Session from '@/Shared/Session';
 import EditProfile from '@/ui/EditProfile';
 import Link from 'next/link';
@@ -114,10 +115,10 @@ const page = async ({ searchParams }) => {
                     </table>
                 </div>
             </div>
-            <div className='bg-white 2xl:p-20 xl:p-20 px-6 py-10 rounded-t-[50px] 2xl:mt-40 xl:mt-28 mt-16'>
+            <div className='2xl:p-36 xl:p-20 px-6 py-10 rounded-t-[50px]'>
                 <div className=''>
-                    <h2 className='font-semibold 2xl:text-5xl xl:text-3xl'>You are in the rankings</h2>
-                    <p className='2xl:text-2xl xl:text-lg 2xl:mt-14 xl:mt-7 font-semibold'>Time spent on the water during the event</p>
+                    <h2 className='font-semibold 2xl:text-5xl xl:text-3xl text-white'>You are in the rankings</h2>
+                    <p className='2xl:text-2xl xl:text-lg 2xl:mt-14 xl:mt-7 font-semibold text-white'>Time spent on the water during the event</p>
                     <hr className='mt-2 mb-4' />
                     <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 gap-4'>
                         <span className={Wingfoil ? 'block' : 'hidden'}>
@@ -147,22 +148,22 @@ const page = async ({ searchParams }) => {
                 <ChangeCategory />
 
                 {/* Upload Data */}
-                <div className='2xl:mt-20 xl:mt-14 mt-8 flex 2xl:flex-row xl:flex-row flex-col w-full gap-2'>
-                    <Link href={'/profile/uploadUserData'} className='2xl:w-1/2 xl:w-1/2 w-full 2xl:h-[240px] xl:h-[200px]'>
-                        <button className='uppercase w-full h-full flex flex-col-reverse justify-between bg-black p-5'>
+                <div className='2xl:mt-20 xl:mt-14 mt-8 flex 2xl:flex-row xl:flex-row flex-col w-full gap-10'>
+                    <Link href={'/profile/uploadUserData'} className='2xl:w-1/2 xl:w-1/2 w-full 2xl:h-[240px] xl:h-[200px] border border-white rounded-lg bg-black hover:bg-gray-800 duration-150 transition-all'>
+                        <button className='uppercase w-full h-full flex flex-col-reverse justify-between p-5 '>
                             <span className={`${antiHero.className} text-lg text-[#FAE500] 2xl:text-7xl xl:text-4xl`}>My Sessions</span>
                             <FaArrow className={'w-[40px] h-[40px] ml-auto'} color={'#FAE500'} />
                         </button>
                     </Link>
-                    <Link href={'/profile/uploadUserData'} className='2xl:w-1/2 xl:w-1/2 w-full 2xl:h-[240px] xl:h-[200px]'>
-                        <button className='uppercase flex flex-col-reverse justify-between w-full h-full bg-black p-5'>
+                    <Link href={'/profile/uploadUserData'} className='2xl:w-1/2 xl:w-1/2 w-full 2xl:h-[240px] xl:h-[200px] border border-white rounded-lg bg-black hover:bg-gray-800 duration-150 transition-all'>
+                        <button className='uppercase flex flex-col-reverse justify-between w-full h-full p-5'>
                             <span className={`${antiHero.className} text-lg text-[#FAE500] 2xl:text-7xl xl:text-4xl`}>Import Data</span>
                             <FaArrow className={'w-[40px] h-[40px] ml-auto'} color={'#FAE500'} />
                         </button>
                     </Link>
                 </div>
-
             </div>
+            <Join />
         </div>
     );
 };

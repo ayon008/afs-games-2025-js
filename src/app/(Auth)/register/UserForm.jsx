@@ -159,11 +159,10 @@ const UserForm = () => {
                 <div className="form-control relative">
                     <input
                         type="text"
-                        {...register('team', { required: 'team is required' })}
+                        {...register('team', { required: false })}
                         placeholder="Affiliation/Team"
                         className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
                     />
-                    {errors.team && <p className="text-red-500 text-xs mt-1">{errors.team.message}</p>}
                 </div>
             </div>
             <div className="form-control relative">

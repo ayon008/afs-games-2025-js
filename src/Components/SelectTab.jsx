@@ -78,12 +78,12 @@ const SelectTab = ({ pointTable }) => {
                                 placeholder="Search participant..."
                                 value={searchTerm}
                                 onChange={(e) => { setSearchTerm(e.target.value); setPage(1); }}
-                                className="input input-sm input-bordered w-full md:w-1/3 ring-0 outline-0 focus:ring-0 focus:outline-0"
+                                className="input input-md input-bordered w-full md:w-1/3 ring-0 outline-0 focus:ring-0 focus:outline-0"
                             />
                             <select
                                 value={displayMode}
                                 onChange={(e) => { setDisplayMode(e.target.value); setPage(1); }}
-                                className="select select-sm select-bordered w-full md:w-1/12 ring-0 outline-0 focus:ring-0 focus:outline-0"
+                                className="select select-md select-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
                             >
                                 <option value='name'>Player</option>
                                 <option value='team'>Team</option>
@@ -91,7 +91,7 @@ const SelectTab = ({ pointTable }) => {
                             <select
                                 value={filterPays}
                                 onChange={(e) => { setFilterPays(e.target.value); setPage(1); }}
-                                className="select select-sm select-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
+                                className="select select-md select-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
                             >
                                 <option value=''>All countries</option>
                                 {paysOptions.map(p => <option key={p} value={p}>{p}</option>)}
@@ -102,12 +102,12 @@ const SelectTab = ({ pointTable }) => {
                                 placeholder="Age"
                                 value={filterAge}
                                 onChange={(e) => { setFilterAge(e.target.value); setPage(1); }}
-                                className="input input-sm input-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
+                                className="input input-md input-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
                             />
                             <select
                                 value={filterTeam}
                                 onChange={(e) => { setFilterTeam(e.target.value); setPage(1); }}
-                                className="select select-sm select-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
+                                className="select select-md select-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
                             >
                                 <option value=''>All teams</option>
                                 {teamOptions.map(t => <option key={t} value={t}>{t}</option>)}
@@ -115,7 +115,7 @@ const SelectTab = ({ pointTable }) => {
                             <div className='ml-auto'>
                                 <button
                                     type='button'
-                                    className='btn btn-outline text-white btn-sm ring-0 outline-0 focus:ring-0 focus:outline-0'
+                                    className='btn btn-outline text-white btn-md ring-0 outline-0 focus:ring-0 focus:outline-0'
                                     onClick={() => {
                                         setSearchTerm('');
                                         setFilterPays('');
