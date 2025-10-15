@@ -92,6 +92,25 @@ const Session = ({ uid }) => {
 
     if (navigator.share) {
       try {
+        // Prefer sharing the image file itself so recipients see the image, not a link.
+        if (imageUrl && window.fetch && navigator.canShare) {
+          try {
+            const res = await fetch(imageUrl, { mode: 'cors' });
+            const blob = await res.blob();
+            const fileName = `${filename}-map.png`;
+            const file = new File([blob], fileName, { type: blob.type || 'image/png' });
+
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+              await navigator.share({ files: [file], title: filename, text: 'Check out this session' });
+              return;
+            }
+          } catch (fetchErr) {
+            // Could not fetch/share the image (CORS or network) — fall back to sharing URL
+            console.warn('Fetching or sharing image failed, falling back to URL share', fetchErr);
+          }
+        }
+
+        // Fallback: share the URL (mapLink or imageUrl)
         await navigator.share({ title: filename, text: 'Check out this session', url: shareUrl });
         return;
       } catch (e) {
