@@ -128,6 +128,7 @@ const UploadGPX = ({ data }) => {
                             createdTime,
                             filename: uploadedFiles[0]?.name,
                             gpxURL,
+                            geojson: geojson,
                             time: new Date(),
                             status: true,
                         });
@@ -218,7 +219,6 @@ const UploadGPX = ({ data }) => {
             }
         });
     };
-
 
     return (
         <>

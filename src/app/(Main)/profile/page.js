@@ -121,11 +121,10 @@ const page = async ({ searchParams }) => {
             <div className='2xl:px-36 xl:px-20 px-6 rounded-t-[50px]'>
                 <div className='flex items-start justify-between md:flex-row flex-col gap-10 lg:mt-20 mt-10 '>
                     <div className='md:w-1/2 w-full'>
-                        {/* Session History */}
-                        <Session uid={uid} />
-
                         {/*  Change Category*/}
                         <ChangeCategory />
+                        {/* Session History */}
+                        <Session uid={uid} />
                     </div>
                     <div className='md:w-1/2 w-full'>
                         <UserMap apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY} height={400} />

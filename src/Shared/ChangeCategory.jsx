@@ -58,7 +58,7 @@ const ChangeCategory = () => {
 
 
     return (
-        <div className="lg:my-20 my-10 text-white">
+        <div className="text-white">
             <h2 className="font-semibold 2xl:text-5xl xl:text-3xl">
                 Your Register Category
             </h2>

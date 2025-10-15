@@ -176,8 +176,10 @@ const UserMap = ({ apiKey, style = defaultStyle, height = 300 }) => {
         <div>
             <h2 className='text-white font-semibold mb-3'>Your City ${userInfo?.city}</h2>
             {error && <div className="text-red-500 text-sm">{error}</div>}
-            {!error && !city && <div className="text-sm text-gray-400">City not provided</div>}
-            <div ref={containerRef} style={{ width: '100%', height: `${height}px` }} className='rounded-md overflow-hidden' />
+            {
+                isLoading ? <div className="text-white">Loading map...</div> :
+                    <div ref={containerRef} style={{ width: '100%', height: `${height}px` }} className='rounded-md overflow-hidden' />
+            }
         </div>
     );
 };
