@@ -159,13 +159,13 @@ const page = async ({ searchParams }) => {
                 <div className='2xl:mt-20 xl:mt-14 mt-8 flex 2xl:flex-row xl:flex-row flex-col w-full gap-10'>
                     <Link href={'/profile/uploadUserData'} className='2xl:w-1/2 xl:w-1/2 w-full 2xl:h-[240px] xl:h-[200px] border border-white rounded-lg bg-black hover:bg-gray-800 duration-150 transition-all'>
                         <button className='uppercase w-full h-full flex flex-col-reverse justify-between p-5 '>
-                            <span className={`${antiHero.className} text-lg text-[#FAE500] 2xl:text-7xl xl:text-4xl`}>My Sessions</span>
+                            <span className={`${antiHero.className} text-3xl text-[#FAE500] 2xl:text-7xl xl:text-5xl`}>My Sessions</span>
                             <FaArrow className={'w-[40px] h-[40px] ml-auto'} color={'#FAE500'} />
                         </button>
                     </Link>
                     <Link href={'/profile/uploadUserData'} className='2xl:w-1/2 xl:w-1/2 w-full 2xl:h-[240px] xl:h-[200px] border border-white rounded-lg bg-black hover:bg-gray-800 duration-150 transition-all'>
                         <button className='uppercase flex flex-col-reverse justify-between w-full h-full p-5'>
-                            <span className={`${antiHero.className} text-lg text-[#FAE500] 2xl:text-7xl xl:text-4xl`}>Import Data</span>
+                            <span className={`${antiHero.className} text-3xl text-[#FAE500] 2xl:text-7xl xl:text-5xl`}>Import Data</span>
                             <FaArrow className={'w-[40px] h-[40px] ml-auto'} color={'#FAE500'} />
                         </button>
                     </Link>
