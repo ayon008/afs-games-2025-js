@@ -30,7 +30,7 @@ li:focus {
     display: grid !important;
     grid-template-columns: 1fr 2fr !important;
 }
-
+/* 
 .first {
     background: linear-gradient(90deg, #FFEFB0 0%, rgba(255, 239, 176, 0.00) 100%) !important;
     border-radius: 10px !important;
@@ -44,7 +44,7 @@ li:focus {
 .third {
     background: linear-gradient(90deg, #E5CEB8 0%, rgba(229, 206, 184, 0.00) 100%) !important;
     border-radius: 10px !important;
-}
+} */
 
 .upload {
     background-color: rgba(0, 0, 0, 0.15) !important;

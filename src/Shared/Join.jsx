@@ -21,7 +21,7 @@ const Join = ({ home }) => {
                     <div className='w-fit lg:ml-auto'>
                         <RegisBtn />
                     </div>
-                    <div className='xl:mt-[170px] 2xl:mt-[190px]'>
+                    <div className='xl:mt-[170px] 2xl:mt-[190px] mt-10 ml-5 lg:ml-0'>
                         <ul className='list-disc text-white space-y-2'>
                             <li className='text-lg [&::marker]:text-[#FFE500] [&::marker]:text-2xl'>Price : Free</li>
                             <li className='text-lg [&::marker]:text-[#FFE500] [&::marker]:text-2xl'>Date : 8th OCT - 15th NOV</li>

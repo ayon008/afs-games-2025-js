@@ -211,10 +211,10 @@ const CountryFlagList = ({ countries }) => {
                             <img
                                 src={`https://flagcdn.com/w40/${countryCode.toLowerCase()}.png`}
                                 alt={`${country} flag`}
-                                className="w-[20px] h-[14px] xl:w-[25px] xl:h-[15px] 2xl:w-[51px] 2xl:h-[31px]"
+                                className="lg:w-[31px] w-[24px] h-auto"
                             />
                         ) : (
-                            <p>Flag not available for {country}</p>
+                            <></>
                         )}
                     </div>
                 );

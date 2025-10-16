@@ -11,7 +11,6 @@ import countries from '@/js/countries';
 import useAxiosPublic from '@/Hooks/useAxiosPublic';
 import uploadPdfToFirebase from '@/js/uploadPdf';
 import sendDataToWebhook from '@/js/kalviyoSubscribe';
-// import sendDataToWebhook from '@/js/kalviyoSubscribe';
 
 const UserForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -61,7 +60,16 @@ const UserForm = () => {
             // Update user profile
             await updatedProfile(name, user?.photoURL);
             try {
-                await sendDataToWebhook({ email, name, surName, pays });
+
+                const response2 = await fetch('/api/klaviyo/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, name, surName, pays }),
+                });
+                const data2 = await response2.json();
+                console.log(data2);
+
+
                 const userData = { name, surName, city, pays, age, team, ...user, invoiceURL, ...categories, approved: false };
                 await axiosPublic.post('/user', userData);
 

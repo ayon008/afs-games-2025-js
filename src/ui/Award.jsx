@@ -11,7 +11,7 @@ const Award = () => {
     return (
         <div className='mt-10'>
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)} className={'2xl:mx-4 xl:mx-4 mx-0'}>
-                <TabList className={'flex items-center 2xl:justify-center xl:justify-center justify-between 2xl:gap-10 xl:gap-10 gap-4 cursor-pointer w-full px-1 overflow-x-auto mb-10'}>
+                <TabList className={'flex items-center 2xl:justify-center xl:justify-center justify-between 2xl:gap-10 xl:gap-10 gap-4 cursor-pointer w-full px-1 overflow-x-auto 2xl:mb-[76px] xl:mb-[56px] mb-[40px]'}>
                     {
                         categories?.map((category, i) => {
                             return (

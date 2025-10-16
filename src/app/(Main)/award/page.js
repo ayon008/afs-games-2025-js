@@ -7,6 +7,7 @@ import getAllSponsors from '@/lib/getAllSponsors';
 import Award from '@/ui/Award';
 import Link from 'next/link';
 import FaArrow from '@/icons/FaArrow';
+import HeroBanner from "@/ui/Hero";
 
 const page = async () => {
     const data = await getAllSponsors();
@@ -15,20 +16,18 @@ const page = async () => {
 
 
     return (
-        <div className=''> 
-            <div className='max-h-[718px] min-h-[500px] 2xl:pt-[140px] xl:pt-[120px] flex flex-col'>
-                <div className='m-auto'>
-                    <h1 className={`${morgana.className} text-center lg:text-8xl text-5xl text-[#FFE500] uppercase`}>Award</h1>
-                </div>
-            </div>
-            <div className='p-16'>
-                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-2xl text-white`}>Discover the event <span className='text-[#FFE500]'>partners</span></h2>
+        <div className=''>
+            <HeroBanner text={'Award'} />
+            <div className='px-4'>
+                <h1 className={`${morgana.className} text-center text-white 2xl:text-[60px] xl:text-[54px] text-4xl`}>
+                    Discover the event <span className='text-[#FFE500]'>partners</span>
+                </h1>
 
-                <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 2xl:mt-20 xl:mt-16 mt-10 2xl:gap-32 xl:gap-24 gap-y-10 2xl:justify-center xl:justify-center justify-normal'>
+                <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 2xl:mt-[120px] xl:mt-[100px] mt-[80px] 2xl:gap-32 xl:gap-24 gap-y-20 2xl:justify-center xl:justify-center justify-normal'>
                     {
                         sponsors?.map((sponsor, i) => {
                             return (
-                                <div key={i} className='2xl:space-y-6 xl:space-y-5 space-y-3 '>
+                                <div key={i} className='2xl:space-y-[46px] xl:space-y-[40px] space-y-[36px]'>
                                     <div className='w-fit mx-auto'>
                                         <img src={sponsor.sponsorPicture} className='2xl:w-full 2xl:h-auto xl:w-full xl:h-auto w-[80px] h-auto' alt='sponsor' />
                                     </div>
@@ -51,11 +50,13 @@ const page = async () => {
                         })
                     }
                 </div>
-                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-2xl 2xl:mt-24 xl:mt-16 mt-10 text-white`}>event <span className='text-[#FFE500]'>podiums</span></h2>
-                <p className='text-white/60 2xl:text-2xl xl:text-lg text-sm font-semibold text-center 2xl:mt-16 xl:mt-10 mt-8'>Time spent on water in wingfoil, downwind, windfoil, dockstart, surf foil</p>
+                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-2xl top-margin text-white`}>event <span className='text-[#FFE500]'>podiums</span></h2>
+                <p className='text-white/60 2xl:text-4xl xl:text-3xl text-2xl font-semibold text-center 2xl:my-[76px] xl:my-[56px] my-[40px]'>Time spent on water in wingfoil, downwind, windfoil, dockstart, surf foil</p>
                 <Award />
             </div>
-            <Join />
+            <div className='top-margin'>
+                <Join />
+            </div>
         </div>
     );
 };

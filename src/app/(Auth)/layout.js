@@ -4,6 +4,7 @@ import Image from "next/image";
 import bgImage from '@/../public/d7c10ca2c366195e3e8a69e980287131.jpg'
 import AuthProvider from "@/Provider/AuthProvider";
 import logo from '../../../public/logo afs games (3).svg'
+import Script from "next/script";
 
 const allianceNo2 = localfont(
     {
@@ -20,7 +21,7 @@ const allianceNo2 = localfont(
 export const metadata = {
     title: "Afs Games",
     description: "A platform for gaming enthusiasts.",
-  };
+};
 
 export default function RootLayout({ children }) {
     return (
