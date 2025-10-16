@@ -165,7 +165,7 @@ const Session = ({ uid }) => {
             <tr className="text-white">
               <th>#</th>
               <th>File Name</th>
-              <th>Category</th>
+              <th>Discipline</th>
               <th>Time</th>
               <th>Distance</th>
               <th>Share</th>
