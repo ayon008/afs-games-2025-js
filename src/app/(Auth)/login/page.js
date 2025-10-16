@@ -88,8 +88,8 @@ const Page = ({ searchParams }) => {
                 <form onSubmit={handleSubmit(onSubmit)} className="card-body space-y-[1px]">
                     <div className='text-white text-center'>
                         <p className={`${message ? 'block' : 'hidden'} text-red-600 font-semibold`}>{message}</p>
-                        <h3 className='font-semibold 2xl:text-[28px] xl:text-2xl text-lg tracking-wide'>Sign in</h3>
-                        <h5 className='2xl:text-base xl:text-sm text-[10px] 2xl:mb-2 xl:mb-2 mb-1 tracking-wide text-[#FFFFFF99]'>Add your own records for everyone to see</h5>
+                        <h3 className='font-semibold 2xl:text-[28px] xl:text-2xl text-xl tracking-wide'>Sign in</h3>
+                        <h5 className='2xl:text-lg xl:text-base text-sm 2xl:mb-2 xl:mb-2 mb-1 tracking-wide text-[#FFFFFF99]'>Add your own records for everyone to see</h5>
                     </div>
                     {/* Email Field */}
                     <div className="form-control relative">
@@ -127,7 +127,7 @@ const Page = ({ searchParams }) => {
                                 Forget your password?
                             </span>
                         </p>
-                        <FaArrow className={'h-[10px] w-[10px] mt-1'} />
+                        <FaArrow className={'h-[10px] w-[10px] mt-1 text-[#FFE500]'} color={``}/>
                     </div>
                     {/* Google Sign-In */}
 
@@ -146,7 +146,7 @@ const Page = ({ searchParams }) => {
                         <p className='text-sm text-[#FFFFFF99]'>Need an account?</p>
                         <div className='flex items-baseline gap-1'>
                             <p><Link href={"/register"} className='text-[#FFE500] text-sm'>Create account</Link></p>
-                            <FaArrow className={'h-[10px] w-[10px] mt-1'} />
+                            <FaArrow className={'h-[10px] w-[10px] mt-1 text-[#FFE500]'} />
                         </div>
                     </div>
                 </form>

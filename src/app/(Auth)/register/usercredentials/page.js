@@ -71,7 +71,7 @@ const SignUp = () => {
                 </span>
                 <div className='text-white text-center'>
                     <h3 className='font-semibold 2xl:text-[28px] xl:text-2xl text-lg'>Create Your Account</h3>
-                    <h5 className='2xl:text-base xl:text-sm text-[10px] 2xl:mb-2 xl:mb-2 mb-1 tracking-wide text-[#FFFFFF99]'>Set your password to continue</h5>
+                    <h5 className='2xl:text-lg xl:text-base text-sm 2xl:mb-2 xl:mb-2 mb-1 tracking-wide text-[#FFFFFF99]'>Set your password to continue</h5>
                 </div>
                 <div className="form-control relative">
                     <label className="label items-center justify-normal bg-[#111] px-2 w-fit h-fit py-0 rounded-3xl gap-1 absolute left-[12px] -top-[10px]">
@@ -126,13 +126,13 @@ const SignUp = () => {
                     {errors.confirmPassword && <p className="text-red-500 text-xs mt-1">{errors.confirmPassword.message}</p>}
                 </div>
                 <div className="form-control">
-                    <button type="submit" className="btn bg-[#FFE500] border-none text-white Alliance">CONTINUE</button>
+                    <button type="submit" className="btn bg-[#FFE500] border-none text-black Alliance">CONTINUE</button>
                 </div>
                 <div className='flex items-center w-fit mx-auto gap-2'>
                     <p className='text-sm text-[#FFFFFF99]'>Already have an account?</p>
                     <div className='flex items-baseline gap-1'>
                         <p><Link href={"/login"} className='text-[#FFE500] text-sm'>Log In</Link></p>
-                        <FaArrow className={'w-[10px] h-[10px]'} />
+                        <FaArrow className={'w-[10px] h-[10px] text-[#FFE500]'} />
                     </div>
                 </div>
             </form>

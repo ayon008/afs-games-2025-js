@@ -26,8 +26,10 @@ const Navbar = () => {
                                     <Link href={`/${item.toLowerCase()}`} passHref>
                                         <p className='uppercase 2xl:text-base lg:text-xs font-semibold'>{item === 'Faq' ? 'GUIDES ⏐ FAQ' : item}</p>
                                     </Link>
-                                    <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500] mx-4'>
-                                    </div>
+                                    {
+                                        index !== navItems.length - 1 && <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500] mx-4'>
+                                        </div>
+                                    }
                                 </li>
                             )
                         })

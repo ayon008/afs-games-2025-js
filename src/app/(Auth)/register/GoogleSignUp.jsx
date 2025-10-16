@@ -62,7 +62,7 @@ const GoogleSignUp = () => {
             </span>
             <div className='text-white text-center'>
                 <h3 className='font-semibold text-[28px] Alliance tracking-wide'>Sign up</h3>
-                <h5 className='text-base Alliance tracking-wide text-[#FFFFFF99]'>Add your own records for everyone to see</h5>
+                <h5 className='Alliance tracking-wide text-[#FFFFFF99] 2xl:text-lg xl:text-base text-base'>Add your own records for everyone to see</h5>
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
                 <div className="form-control">
@@ -82,7 +82,7 @@ const GoogleSignUp = () => {
                 <p className='text-sm text-[#FFFFFF99] w-fit'>Already have an account?</p>
                 <div className='flex items-center gap-1'>
                     <Link href="/login" className='text-[#FFE500] text-sm'>Login</Link>
-                    <FaArrow className='w-[10px] h-[10px] mt-1' />
+                    <FaArrow className='w-[10px] h-[10px] mt-1 text-[#FFE500]' />
                 </div>
             </div>
         </div>

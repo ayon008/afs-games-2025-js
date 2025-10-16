@@ -9,7 +9,7 @@ const RegisBtn = () => {
     return (
         <div className=''>
             <Link href={user ? `/profile?uid=${user?.uid}` : '/register'}>
-                <button className="btn bg-[#FFE500] hover:bg-black hover:text-[#FFE500] border-2 border-white transition-all duration-200 ease-in border-none px-[25px] flex items-center group">
+                <button className="btn  !border-[0.5px] !border-[#FFE500] bg-[#FFE500] hover:bg-black hover:text-[#FFE500] border-2 border-white transition-all duration-200 ease-in px-[25px] flex items-center group">
                     <span className="2xl:text-[25px] xl:text-[22px] text-lg font-normal inline-block">
                         SIGN UP
                     </span>

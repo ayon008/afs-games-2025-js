@@ -55,9 +55,9 @@ const ChangeCategory = () => {
     };
 
     // Reusable Tailwind class strings for buttons
-    const baseBtn = "btn text-[10px]";
-    const participateBtn = `${baseBtn} btn-outline text-green-500 btn-md`;
-    const participatedBtn = `${baseBtn} border text-green-500 border-green-500 hover:bg-green-500 hover:text-black disabled:border-[#FFE500] disabled:text-[#FFE500] disabled:hover:bg-[#FFE500] disabled:hover:text-black btn-md`;
+    const baseBtn = "btn px-4 py-2 text-[10px] btn-sm";
+    const participateBtn = `${baseBtn} btn-outline text-green-500`;
+    const participatedBtn = `${baseBtn} border text-green-500 border-green-500 hover:bg-green-500 hover:text-black disabled:border-[#FFE500] disabled:text-[#FFE500] disabled:hover:bg-[#FFE500] disabled:hover:text-black`;
 
     const categories = [
         "Dockstart",
@@ -95,9 +95,9 @@ const ChangeCategory = () => {
                                 const participated = userInfo?.[category];
                                 return (
                                     <tr key={category}>
-                                        <td className="font-medium">{index + 1}</td>
-                                        <td className="font-medium">{category}</td>
-                                        <td className="text-right">
+                                        <td className="font-medium 2xl:text-2xl xl:text-xl text-lg">{index + 1}</td>
+                                        <td className="font-medium 2xl:text-2xl xl:text-xl text-lg">{category}</td>
+                                        <td className="text-right 2xl:text-2xl xl:text-xl text-lg">
                                             {participated ? (
                                                 <button className={participatedBtn} disabled>
                                                     Participated

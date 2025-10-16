@@ -38,7 +38,7 @@ const page = async () => {
                                         {/* <a className='text-[#000] 2xl:text-2xl xl:text-lg text-sm font-semibold underline' href={sponsor.sponsorName}>{sponsor.sponsorName}</a> */}
                                         <div className='w-fit mx-auto 2xl:mt-10 xl:mt-8 mt-6'>
                                             <Link href={`${sponsor.sponsorName}`}>
-                                                <button className='btn bg-[#FFE500] border-none'>
+                                                <button className='btn bg-[#FFE500] hover:bg-black hover:text-[#FFE500] transition-all duration-200 border-[1px] !border-[#FFE500]'>
                                                     <span className='uppercase font-light'>{i === 0 ? "defiwind" : i === 1 ? "SOORUZ" : i === 2 ? "FOILING MAGZINE" : i === 3 ? "A3D" : "AP3D"}</span>
                                                     <FaArrow className={'2xl:w-[14px] 2xl:h-[14px] w-[8px] h-[8px] xl:w-[10px] xl:h-[10px] 2xl:mt-1'} color={'black'} />
                                                 </button>

@@ -11,6 +11,7 @@ import countries from '@/js/countries';
 import useAxiosPublic from '@/Hooks/useAxiosPublic';
 import uploadPdfToFirebase from '@/js/uploadPdf';
 import sendDataToWebhook from '@/js/kalviyoSubscribe';
+import FaArrow from '@/icons/FaArrow';
 
 const UserForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -247,8 +248,9 @@ const UserForm = () => {
             {/* Footer */}
             <div className="flex items-center w-fit mx-auto gap-2">
                 <p className="text-sm text-[#FFFFFF99]">Already have an account?</p>
-                <div className="flex items-baseline gap-1">
-                    <p><Link href="/register" className="text-[#FFE500] text-sm">Log In</Link></p>
+                <div className='flex items-center gap-1'>
+                    <Link href="/login" className='text-[#FFE500] text-sm'>Login</Link>
+                    <FaArrow className='w-[10px] h-[10px] mt-1 text-[#FFE500]' />
                 </div>
             </div>
         </form>

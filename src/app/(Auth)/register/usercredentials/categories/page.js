@@ -117,7 +117,7 @@ const Categories = () => {
 
                 {/* Submit Button */}
                 <div className="form-control">
-                    <button type="submit" className="btn bg-[#FFE500] border-none text-white">CONTINUE</button>
+                    <button type="submit" className="btn bg-[#FFE500] border-none text-black">CONTINUE</button>
                 </div>
 
                 {/* Footer */}
@@ -125,7 +125,7 @@ const Categories = () => {
                     <p className='text-sm text-[#FFFFFF99]'>Already have an account?</p>
                     <div className='flex items-baseline gap-1'>
                         <p><Link href={"/login"} className='text-[#FFE500] text-sm'>Log In</Link></p>
-                        <FaArrow className={'w-[10px] h-[10px]'} />
+                        <FaArrow className={'w-[10px] h-[10px] text-[#FFE500]'} />
                     </div>
                 </div>
             </form>
