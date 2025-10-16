@@ -9,9 +9,14 @@ const RegisBtn = () => {
     return (
         <div className=''>
             <Link href={user ? `/profile?uid=${user?.uid}` : '/register'}>
-                <button className='btn bg-[#FFE500] hover:bg-black hover:text-[#FFE500] transition-all duration-150 ease-in border-none px-[25px] flex items-stretch]'>
-                    <span className='2xl:text-[25px] xl:text-[22px] text-lg font-normal inline-block'>SIGN UP</span>
-                    <FaArrow className={'2xl:w-[18px] xl:w-[16px] w-[14px] h-full'} color={'black'} />
+                <button className="btn bg-[#FFE500] hover:bg-black hover:text-[#FFE500] border-2 border-white transition-all duration-200 ease-in border-none px-[25px] flex items-center group">
+                    <span className="2xl:text-[25px] xl:text-[22px] text-lg font-normal inline-block">
+                        SIGN UP
+                    </span>
+                    <FaArrow
+                        className="2xl:w-[18px] xl:w-[16px] w-[14px] ml-2 transition-all duration-200"
+                        color="black"
+                    />
                 </button>
             </Link>
         </div>
