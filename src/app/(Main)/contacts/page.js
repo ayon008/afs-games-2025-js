@@ -38,7 +38,7 @@ const page = () => {
                             </div>
                             <p className='mt-2 text-[#989898] 2xl:text-lg xl:text-base text-sm'>Event & Community Manager</p>
                             <div className='bg-[#FFE500] p-3 rounded-[18.5px] w-fit mt-4'>
-                                <a href={'mailto:chloe.chaussy@foilandco.com'} className='text-white 2xl:text-sm xl:text-xs text-base'>chloe.chaussy@foilandco.com</a>
+                                <a href={'mailto:chloe.chaussy@foilandco.com'} className='text-black cursor-pointer 2xl:text-sm xl:text-xs text-base'>chloe.chaussy@foilandco.com</a>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@ const page = () => {
                                 E-commerce & Website Manager
                             </p>
                             <div className='bg-[#FFE500] p-3 rounded-[18.5px] w-fit mt-4'>
-                                <a href={'mailto:antonin.raffarin@foilandco.com'} className='text-white 2xl:text-sm xl:text-xs text-base'>antonin.raffarin@foilandco.com</a>
+                                <a href={'mailto:antonin.raffarin@foilandco.com'} className='text-black cursor-pointer 2xl:text-sm xl:text-xs text-base'>antonin.raffarin@foilandco.com</a>
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@ const page = () => {
                             </div>
                             <p className='mt-2 text-[#989898] 2xl:text-lg xl:text-base text-sm'>Content Manager</p>
                             <div className='bg-[#FFE500] p-3 rounded-[18.5px] w-fit mt-4'>
-                                <a href={'mailto:benedicte.viseux@foilandco.com'} className='text-white 2xl:text-sm xl:text-xs text-base'>benedicte.viseux@foilandco.com</a>
+                                <a href={'mailto:benedicte.viseux@foilandco.com'} className='text-black cursor-pointer 2xl:text-sm xl:text-xs text-base'>benedicte.viseux@foilandco.com</a>
                             </div>
                         </div>
                     </div>

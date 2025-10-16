@@ -241,7 +241,7 @@ const UserForm = () => {
 
             {/* Submit Button */}
             <div className="form-control">
-                <button type="submit" className="btn bg-[#FFE500] xl:text-xs p-1 border-none text-white">CREATE ACCOUNT</button>
+                <button type="submit" className="btn bg-[#FFE500] xl:text-xs p-1 border-none text-black">CREATE ACCOUNT</button>
             </div>
 
             {/* Footer */}

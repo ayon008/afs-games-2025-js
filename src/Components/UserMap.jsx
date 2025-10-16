@@ -174,7 +174,8 @@ const UserMap = ({ apiKey, style = defaultStyle, height = 300 }) => {
 
     return (
         <div>
-            <h2 className='text-white font-semibold mb-3'>Your City ${userInfo?.city}</h2>
+            <h2 className='text-white font-semibold mb-3'>Your City {userInfo?.city && userInfo.city.charAt(0).toUpperCase() + userInfo.city.slice(1)}
+            </h2>
             {error && <div className="text-red-500 text-sm">{error}</div>}
             {
                 isLoading ? <div className="text-white">Loading map...</div> :

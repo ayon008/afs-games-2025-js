@@ -14,7 +14,7 @@ const EditProfile = () => {
     return (
         <div className='flex items-start justify-between w-full'>
             <div className='flex 2xl:items-center xl:items-center items-start gap-y-2 2xl:gap-2 xl:gap-2 2xl:flex-row xl:flex-row flex-col-reverse 2xl:w-fit xl:w-fit w-1/2'>
-                <h1 className='text-white font-semibold 2xl:text-7xl xl:text-5xl text-sm'>
+                <h1 className='text-white font-semibold 2xl:text-7xl xl:text-5xl text-3xl'>
                     <span className={`${antiHero.className} text-[#FAE500]`}>
                         Hello
                     </span>, <span className='2xl:ml-3 xl:ml-3 ml-1'>{user?.displayName}</span>

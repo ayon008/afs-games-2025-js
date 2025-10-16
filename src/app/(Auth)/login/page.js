@@ -135,7 +135,7 @@ const Page = ({ searchParams }) => {
                     <div className="form-control">
                         <input
                             type="submit"
-                            className="btn bg-[#FFE500] border-none text-white"
+                            className="btn bg-[#FFE500] border-none text-black"
                             value={isSubmitting ? 'Logging in...' : 'CONTINUE'}
                             disabled={isSubmitting}
                         />

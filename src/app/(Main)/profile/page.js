@@ -172,7 +172,9 @@ const page = async ({ searchParams }) => {
                 </div>
 
             </div>
-            <Join />
+            <div className='top-margin'>
+                <Join />
+            </div>
         </div>
     );
 };
