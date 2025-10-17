@@ -23,7 +23,7 @@ const Banner = () => {
             <Image src={bannerImage} className='aspect-[704/566] mx-auto 2xl:w-[704px] xl:w-[604px] w-[70%] object-contain' alt='' />
             <div className='2xl:mt-[85px] xl:mt-[65px] mt-[45px] px-4'>
                 <p className='text-white 2xl:text-4xl xl:text-3xl text-xl font-semibold text-center max-w-[1183px] w-full mx-auto'>
-                    From September 30 to November 3, navigate to your favorite spots equipped with your GPS, upload your session to your account, and accumulate session hours to top the leaderboard!
+                    From October 20 to December 8, navigate to your favorite spots equipped with your GPS, upload your session to your account, and accumulate session hours to top the leaderboard!
                 </p>
                 <div className='flex items-center justify-center 2xl:mt-[85px] xl:mt-[65px] mt-[45px] 2xl:mb-[182px] xl:mb-[162px] mb-[132px]'>
                     <RegisBtn />

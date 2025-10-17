@@ -6,8 +6,10 @@ import Image from 'next/image';
 import image from "../../public/assets/Vector 1.png"
 
 const Award = () => {
-    const categories = ['Wingfoil', 'Windfoil', 'dockstart', 'surfFoil', 'dw', 'Parawing'];
+    // const categories = ['Wingfoil', 'Windfoil', 'dockstart', 'surfFoil', 'dw', 'Parawing'];
+    const categories = ['Wingfoil', 'Downwind', 'Windfoil', 'Dockstart', 'Surf Foil', 'Parawing'];
     const [tabIndex, setTabIndex] = useState(0);
+    const text = <p className='2xl:text-6xl xl:text-5xl text-3xl text-white text-center mt-28'>Prizes to be announced soon</p>
     return (
         <div className='mt-10'>
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)} className={'2xl:mx-4 xl:mx-4 mx-0'}>
@@ -21,7 +23,8 @@ const Award = () => {
                     }
                 </TabList>
                 <TabPanel className={'2xl:mt-14 xl:mt-8 mt-6'}>
-                    <div className='grid lg:grid-cols-3 grid-cols-1 gap-[27px] max-w-[1183px] mx-auto w-full items-start'>
+                    {text}
+                    {/* <div className='grid lg:grid-cols-3 grid-cols-1 gap-[27px] max-w-[1183px] mx-auto w-full items-start'>
                         <div className='space-y-6 py-9 px-10 vertical-line bg-[#2020204D]'>
                             <h4 className='text-white font-bold 2xl:text-[100px] xl:text-[80px] text-6xl'>1<span className='2xl:text-[50px] xl:text-[40px] text-[30px] uppercase'>st</span></h4>
                             <p className='text-white font-medium 2xl:text-[25px] xl:text-[20px] text-base text-center'>AP3D Shim</p>
@@ -44,11 +47,12 @@ const Award = () => {
                             <Image src={image} alt='' className='w-full' />
                             <p className='text-white font-medium 2xl:text-[25px] xl:text-[20px] text-base text-center'>AP3D Shim</p>
                         </div>
-                    </div>
+                    </div> */}
                 </TabPanel>
                 {/* Windfoil */}
                 <TabPanel className={'2xl:mt-14 xl:mt-8 mt-6'}>
-                    <div className='grid lg:grid-cols-3 grid-cols-1 gap-[27px] max-w-[1183px] mx-auto w-full items-start'>
+                    {text}
+                    {/* <div className='grid lg:grid-cols-3 grid-cols-1 gap-[27px] max-w-[1183px] mx-auto w-full items-start'>
                         <div className='space-y-6 py-9 px-10 vertical-line bg-[#2020204D]'>
                             <h4 className='text-white font-bold 2xl:text-[100px] xl:text-[80px] text-6xl'>1<span className='2xl:text-[50px] xl:text-[40px] text-[30px] uppercase'>st</span></h4>
                             <p className='text-white font-medium 2xl:text-[25px] xl:text-[20px] text-base text-center'>Foiling Mag annual <br /> subscription</p>
@@ -61,40 +65,44 @@ const Award = () => {
                             <h4 className='text-white font-bold 2xl:text-[100px] xl:text-[80px] text-6xl'>3<span className='2xl:text-[50px] xl:text-[40px] text-[30px] uppercase'>rd</span></h4>
                             <p className='text-white font-medium 2xl:text-[25px] xl:text-[20px] text-base text-center'>Textile Pack</p>
                         </div>
-                    </div>
+                    </div> */}
                 </TabPanel>
 
                 {/* DockStart */}
                 <TabPanel className={'2xl:mt-14 xl:mt-8 mt-6 flex items-center justify-center'}>
-                    <div className='space-y-6 py-9 px-10 vertical-line bg-[#2020204D] max-w-[343px] w-full'>
+                    {text}
+                    {/* <div className='space-y-6 py-9 px-10 vertical-line bg-[#2020204D] max-w-[343px] w-full'>
                         <h4 className='text-white font-bold 2xl:text-[100px] xl:text-[80px] text-6xl'>1<span className='2xl:text-[50px] xl:text-[40px] text-[30px] uppercase'>st</span></h4>
                         <p className='text-white font-medium 2xl:text-[25px] xl:text-[20px] text-base text-center'>AP3D Shim</p>
                         <Image src={image} alt='' className='w-full' />
                         <p className='text-white font-medium 2xl:text-[25px] xl:text-[20px] text-base text-center'>AFS SK8</p>
-                    </div>
+                    </div> */}
                 </TabPanel>
                 {/* ProneFoil */}
                 <TabPanel className={'flex items-center justify-center'}>
-                    <div className='space-y-6 py-9 px-10 vertical-line bg-[#2020204D] max-w-[343px] w-full'>
+                    {text}
+                    {/* <div className='space-y-6 py-9 px-10 vertical-line bg-[#2020204D] max-w-[343px] w-full'>
                         <h4 className='text-white font-bold 2xl:text-[100px] xl:text-[80px] text-6xl'>1<span className='2xl:text-[50px] xl:text-[40px] text-[30px] uppercase'>st</span></h4>
                         <p className='text-white font-medium 2xl:text-[25px] xl:text-[20px] text-base text-center'>AP3D Shim</p>
                         <Image src={image} alt='' className='w-full' />
                         <p className='text-white font-medium 2xl:text-[25px] xl:text-[20px] text-base text-center'>AFS Silk</p>
-                    </div>
+                    </div> */}
                 </TabPanel>
                 {/* Downwind */}
                 <TabPanel className={'flex items-center justify-center'}>
-                    <div className='space-y-6 px-10 py-9 vertical-line bg-[#2020204D] max-w-[343px] w-full'>
+                    {text}
+                    {/* <div className='space-y-6 px-10 py-9 vertical-line bg-[#2020204D] max-w-[343px] w-full'>
                         <h4 className='text-white font-bold 2xl:text-[100px] xl:text-[80px] text-6xl'>1<span className='2xl:text-[50px] xl:text-[40px] text-[30px] uppercase'>st</span></h4>
                         <p className='text-white font-medium 2xl:text-[25px] xl:text-[20px] text-base text-center'>AP3D Shim</p>
-                    </div>
+                    </div> */}
                 </TabPanel>
                 {/* Parawing */}
                 <TabPanel className={'flex items-center justify-center'}>
-                    <div className='space-y-6 px-10 py-9 vertical-line bg-[#2020204D] max-w-[343px] w-full'>
+                    {text}
+                    {/* <div className='space-y-6 px-10 py-9 vertical-line bg-[#2020204D] max-w-[343px] w-full'>
                         <h4 className='text-white font-bold 2xl:text-[100px] xl:text-[80px] text-6xl'>1<span className='2xl:text-[50px] xl:text-[40px] text-[30px] uppercase'>st</span></h4>
                         <p className='text-white font-medium 2xl:text-[25px] xl:text-[20px] text-base text-center'>AP3D Shim</p>
-                    </div>
+                    </div> */}
                 </TabPanel>
             </Tabs>
         </div>

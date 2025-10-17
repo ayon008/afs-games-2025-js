@@ -37,13 +37,10 @@ const SelectTab = ({ pointTable }) => {
     const normalizedSearchAll = searchTerm.trim().toLowerCase();
     const newData = sortedAll.filter(item => {
         if (normalizedSearchAll) {
-            if (displayMode === 'team') {
-                const team = (item?.team || '').toLowerCase();
-                if (!team.includes(normalizedSearchAll)) return false;
-            } else {
-                const name = (item?.displayName || '').toLowerCase();
-                if (!name.includes(normalizedSearchAll)) return false;
-            }
+            // Match against displayName OR team (case-insensitive)
+            const name = (item?.displayName || '').toLowerCase();
+            const team = (item?.team || '').toLowerCase();
+            if (!name.includes(normalizedSearchAll) && !team.includes(normalizedSearchAll)) return false;
         }
         if (filterPays && String((item?.pays) || '') !== String(filterPays)) return false;
         if (filterAge && String((item?.age) || '') !== String(filterAge)) return false;
@@ -75,19 +72,19 @@ const SelectTab = ({ pointTable }) => {
                         <div className="flex flex-col md:flex-row items-start md:items-center gap-3 mb-4">
                             <input
                                 type="text"
-                                placeholder="Search participant..."
+                                placeholder="Search participant or team..."
                                 value={searchTerm}
                                 onChange={(e) => { setSearchTerm(e.target.value); setPage(1); }}
                                 className="input input-md input-bordered w-full md:w-1/3 ring-0 outline-0 focus:ring-0 focus:outline-0"
                             />
-                            <select
+                            {/* <select
                                 value={displayMode}
                                 onChange={(e) => { setDisplayMode(e.target.value); setPage(1); }}
                                 className="select select-md select-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
                             >
                                 <option value='name'>Player</option>
                                 <option value='team'>Team</option>
-                            </select>
+                            </select> */}
                             <select
                                 value={filterPays}
                                 onChange={(e) => { setFilterPays(e.target.value); setPage(1); }}
@@ -96,22 +93,22 @@ const SelectTab = ({ pointTable }) => {
                                 <option value=''>All countries</option>
                                 {paysOptions.map(p => <option key={p} value={p}>{p}</option>)}
                             </select>
-                            <input
+                            {/* <input
                                 type="number"
                                 min={0}
                                 placeholder="Age"
                                 value={filterAge}
                                 onChange={(e) => { setFilterAge(e.target.value); setPage(1); }}
                                 className="input input-md input-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
-                            />
-                            <select
+                            /> */}
+                            {/* <select
                                 value={filterTeam}
                                 onChange={(e) => { setFilterTeam(e.target.value); setPage(1); }}
                                 className="select select-md select-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
                             >
                                 <option value=''>All teams</option>
                                 {teamOptions.map(t => <option key={t} value={t}>{t}</option>)}
-                            </select>
+                            </select> */}
                             <div className='ml-auto'>
                                 <button
                                     type='button'
@@ -149,6 +146,12 @@ const SelectTab = ({ pointTable }) => {
                                                             <div className='border-r-2 border-[#FFF]'>
                                                                 <h2 className='2xl:text-3xl xl:text-xl text-xs font-semibold text-white'>{d.city.charAt(0).toUpperCase() + d.city.slice(1)} {d.pays}</h2>
                                                                 <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>CITY, COUNTRY</p>
+                                                                {
+                                                                    d.team && <>
+                                                                        <h2 className='2xl:text-3xl xl:text-xl text-xs font-semibold text-white mt-2'>{d.team}</h2>
+                                                                        <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>Team Name</p>
+                                                                    </>
+                                                                }
                                                             </div>
                                                             <div className='2xl:border-r-2 xl:border-r-2 2xl:border-[#FFF] xl:border-[#FFF] 2xl:ml-2 xl:ml-2'>
                                                                 <div className='2xl:w-fit 2xl:mx-auto xl:w-fit xl:mx-auto'>

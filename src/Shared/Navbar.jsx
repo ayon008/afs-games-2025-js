@@ -1,14 +1,18 @@
+"use client"
 import Image from 'next/image';
 import React from 'react';
 import logo from '@/../public/logo afs games (3).svg';
 import Link from 'next/link';
 import User from '@/ui/User';
 import NavMobile from '@/Components/navMobile';
+import useAuth from '@/Hooks/useAuth';
 
 const Navbar = () => {
 
+    const { user } = useAuth();
+
     const navItems = [
-        'Award', 'Challenge', 'Leaderboard', 'Faq', 'Contacts'
+        'Award', 'Challenge', 'Leaderboard', 'Faq', 'Contacts', `${user ? "+" : ""}`
     ]
 
     return (
@@ -18,17 +22,17 @@ const Navbar = () => {
             </Link>
             <div className='flex items-center gap-1'>
                 <ul className='bg-[#000] 2xl:flex xl:flex lg:flex items-center rounded-[10px] 2xl:px-[15px] 2xl:py-[10px] xl:px-[12px] xl:py-[8px] hidden backdrop-blur-[10px]'>
-
                     {
-                        navItems?.map((item, index) => {
+                        // Only render visible nav items (filter out empty strings)
+                        navItems?.filter(Boolean).map((item, index, arr) => {
                             return (
                                 <li key={index} className='flex items-center'>
-                                    <Link href={`/${item.toLowerCase()}`} passHref>
+                                    <Link href={item === "+" ? "/profile/uploadUserData" : `/${item.toLowerCase()}`} passHref>
                                         <p className='uppercase 2xl:text-base lg:text-xs font-semibold'>{item === 'Faq' ? 'GUIDES ⏐ FAQ' : item}</p>
                                     </Link>
                                     {
-                                        index !== navItems.length - 1 && <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500] mx-4'>
-                                        </div>
+                                        // Only show separator between items (not after the last one)
+                                        index !== arr.length - 1 && <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500] mx-4' />
                                     }
                                 </li>
                             )

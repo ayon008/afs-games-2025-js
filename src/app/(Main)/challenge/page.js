@@ -9,8 +9,8 @@ const page = () => {
             <div className='w-fit mx-auto 2xl:mb-[145px] xl:mb-[125px] mb-[100px] top-margin'>
                 <CountdownTimer />
             </div>
-            <p className='text-center text-white/60 px-4 mx-auto 2xl:text-3xl xl:text-xl text-base font-medium'>
-                The goal of the AFS GAMES is to motivate you to get on the water throughout October, to improve and push your limits in a friendly atmosphere. Accumulate hours of sailing and try to secure a spot on the podium, with prizes offered by our partners.
+            <p className='text-center text-white/60 px-4 mx-auto 2xl:text-3xl xl:text-xl text-base font-medium 2xl:w-[90%] xl:w-[90%] w-full'>
+                The goal of the AFS GAMES is to motivate you to get on the water until december, to improve and push your limits in a friendly atmosphere. Accumulate hours of sailing and try to secure a spot on the podium, with prizes offered by our partners.
             </p>
             <h1 className={`${morgana.className} text-center text-white 2xl:text-[60px] xl:text-[54px] text-4xl 2xl:mt-[127px] xl:mt-[100px] mt-[80px] bottom-margin`}>
                 TO <span className='text-[#FFE500]'>participate</span>
