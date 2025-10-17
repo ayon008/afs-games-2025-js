@@ -159,7 +159,7 @@ const Page = () => {
                         </button>
                         <button
                             type='submit'
-                            className={`btn uppercase text-white bg-blue-500 ${isSubmitting ? 'text-gray-400 cursor-not-allowed' : 'text-[#11111166]'}`}
+                            className={`btn uppercase bg-[#FFE500] text-black !border-[#FFE500] !border-[0.5px] hover:bg-black hover:text-[#FFE500] transition-all duration-200 ${isSubmitting ? 'cursor-not-allowed' : ''}`}
                             disabled={isSubmitting}
                         >
                             {isSubmitting ? 'Submitting...' : 'Save'}

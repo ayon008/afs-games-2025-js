@@ -2,109 +2,64 @@
 import useAuth from '@/Hooks/useAuth';
 import GetUserData from '@/lib/getUserData';
 import React, { useEffect, useRef, useState } from 'react';
+import mapPin from "../../public/assets/98a0413f-1233-4902-9fd6-eb762db785a5.jpg"
 
 const defaultStyle = [
     {
-        "featureType": "water",
-        "elementType": "geometry",
+        "featureType": "all",
+        "elementType": "labels.text",
         "stylers": [
-            { "color": "#e9e9e9" },
-            { "lightness": 17 }
+            {
+                "color": "#878787"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
         ]
     },
     {
         "featureType": "landscape",
-        "elementType": "geometry",
+        "elementType": "all",
         "stylers": [
-            { "color": "#f5f5f5" },
-            { "lightness": 20 }
+            {
+                "color": "#f9f5ed"
+            }
         ]
     },
     {
         "featureType": "road.highway",
-        "elementType": "geometry.fill",
+        "elementType": "all",
         "stylers": [
-            { "color": "#ffffff" },
-            { "lightness": 17 }
+            {
+                "color": "#f5f5f5"
+            }
         ]
     },
     {
         "featureType": "road.highway",
         "elementType": "geometry.stroke",
         "stylers": [
-            { "color": "#ffffff" },
-            { "lightness": 29 },
-            { "weight": 0.2 }
+            {
+                "color": "#c9c9c9"
+            }
         ]
     },
     {
-        "featureType": "road.arterial",
-        "elementType": "geometry",
+        "featureType": "water",
+        "elementType": "all",
         "stylers": [
-            { "color": "#ffffff" },
-            { "lightness": 18 }
+            {
+                "color": "#aee0f4"
+            }
         ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "geometry",
-        "stylers": [
-            { "color": "#ffffff" },
-            { "lightness": 16 }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [
-            { "color": "#f5f5f5" },
-            { "lightness": 21 }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "geometry",
-        "stylers": [
-            { "color": "#dedede" },
-            { "lightness": 21 }
-        ]
-    },
-    {
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            { "visibility": "on" },
-            { "color": "#ffffff" },
-            { "lightness": 16 }
-        ]
-    },
-    {
-        "elementType": "labels.text.fill",
-        "stylers": [
-            { "saturation": 36 },
-            { "color": "#333333" },
-            { "lightness": 40 }
-        ]
-    },
-    {
-        "elementType": "labels.icon",
-        "stylers": [{ "visibility": "off" }]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "geometry",
-        "stylers": [{ "color": "#f2f2f2" }, { "lightness": 19 }]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "geometry.fill",
-        "stylers": [{ "color": "#fefefe" }, { "lightness": 20 }]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "geometry.stroke",
-        "stylers": [{ "color": "#fefefe" }, { "lightness": 17 }, { "weight": 1.2 }]
     }
-];
+]
 
 function loadScript(src) {
     return new Promise((resolve, reject) => {
@@ -150,13 +105,92 @@ const UserMap = ({ apiKey, style = defaultStyle, height = 300 }) => {
                     const loc = results[0].geometry.location;
                     const opts = {
                         center: loc,
-                        zoom: 12,
+                        zoom: 8,
                         styles: style,
                         disableDefaultUI: true,
                     };
                     mapRef.current = new window.google.maps.Map(containerRef.current, opts);
-                    // marker
-                    new window.google.maps.Marker({ position: loc, map: mapRef.current, title: city });
+                    // marker using imported pin image
+                    const pinUrl = (mapPin && mapPin.src) ? mapPin.src : mapPin;
+                    new window.google.maps.Marker({
+                        position: loc,
+                        map: mapRef.current,
+                        title: city,
+                        icon: pinUrl ? {
+                            url: pinUrl,
+                            scaledSize: new window.google.maps.Size(36, 36),
+                        } : undefined,
+                    });
+
+                    // Draw country border (black) if we have a country name
+                    const countryName = userInfo?.pays;
+                    if (countryName) {
+                        // Use Nominatim to try and fetch a GeoJSON boundary for the country (OpenStreetMap).
+                        // Note: Nominatim is a third-party service with usage policies — consider a server proxy or a licensed boundaries dataset for production.
+                        const nomUrl = `https://nominatim.openstreetmap.org/search?country=${encodeURIComponent(countryName)}&format=json&polygon_geojson=1&limit=1`;
+                        fetch(nomUrl, { headers: { 'Accept': 'application/json' } })
+                            .then(r => r.json())
+                            .then(json => {
+                                if (!json || !json[0] || !json[0].geojson) {
+                                    // fallback: draw a circle around the country's approximate center (use geocoder result geometry.center)
+                                    return;
+                                }
+                                const geojson = json[0].geojson;
+                                try {
+                                    // Clear previous data
+                                    mapRef.current.data && mapRef.current.data.forEach(f => mapRef.current.data.remove(f));
+                                    // Add geojson (this may be MultiPolygon or Polygon)
+                                    mapRef.current.data && mapRef.current.data.addGeoJson(geojson);
+                                    // Style the polygon(s)
+                                    mapRef.current.data && mapRef.current.data.setStyle({ fillOpacity: 0, strokeColor: '#000000', strokeWeight: 2 });
+
+                                    // Compute bounds from geojson coordinates to fit the map
+                                    const bounds = new window.google.maps.LatLngBounds();
+                                    const addCoords = (coords) => {
+                                        coords.forEach(c => {
+                                            if (Array.isArray(c[0])) {
+                                                addCoords(c);
+                                            } else {
+                                                // single [lng, lat]
+                                                bounds.extend(new window.google.maps.LatLng(c[1], c[0]));
+                                            }
+                                        });
+                                    };
+                                    if (geojson.type === 'Feature') {
+                                        const g = geojson.geometry || geojson;
+                                        if (g.type === 'Polygon' || g.type === 'MultiPolygon') addCoords(g.coordinates);
+                                    } else if (geojson.type === 'Polygon' || geojson.type === 'MultiPolygon') {
+                                        addCoords(geojson.coordinates);
+                                    }
+
+                                    if (!bounds.isEmpty()) {
+                                        // Fit bounds with padding so the polygon isn't tight to the edges
+                                        try {
+                                            mapRef.current.fitBounds(bounds, 80);
+                                        } catch (e) {
+                                            // Some environments accept numeric padding, others object — fallback
+                                            try { mapRef.current.fitBounds(bounds); } catch (e2) { /* ignore */ }
+                                        }
+
+                                        // Slightly zoom out one level for extra margin (don't go below zoom 2)
+                                        try {
+                                            const currentZoom = mapRef.current.getZoom();
+                                            if (typeof currentZoom === 'number') {
+                                                mapRef.current.setZoom(Math.max(currentZoom - 1, 2));
+                                            }
+                                        } catch (e) {
+                                            // ignore if getZoom/setZoom aren't ready
+                                        }
+                                    }
+                                } catch (e) {
+                                    console.warn('Failed to draw country polygon', e);
+                                }
+                            })
+                            .catch(err => {
+                                console.warn('Failed to fetch country boundaries from Nominatim', err);
+                                // fallback: do nothing (keep city marker)
+                            });
+                    }
                     setLoading(false);
                 } else {
                     setError('Could not geocode city: ' + (status || 'unknown'));
@@ -170,7 +204,7 @@ const UserMap = ({ apiKey, style = defaultStyle, height = 300 }) => {
         });
 
         return () => { mounted = false; };
-    }, [city, apiKey, style]);
+    }, [city, apiKey, style, userInfo?.pays]);
 
     return (
         <div>

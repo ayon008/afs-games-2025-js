@@ -147,7 +147,7 @@ const SelectTab = ({ pointTable }) => {
                                                     <td colSpan={'9'} className='p-0'>
                                                         <div className='bg-black rounded-[20px] 2xl:p-10 xl:p-6 p-4 grid 2xl:grid-cols-4 xl:grid-cols-4 grid-cols-2 2xl:gap-0 xl:gap-0 gap-6'>
                                                             <div className='border-r-2 border-[#FFF]'>
-                                                                <h2 className='2xl:text-3xl xl:text-xl text-xs font-semibold text-white'>{d.city} {d.pays}</h2>
+                                                                <h2 className='2xl:text-3xl xl:text-xl text-xs font-semibold text-white'>{d.city.charAt(0).toUpperCase() + d.city.slice(1)} {d.pays}</h2>
                                                                 <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>CITY, COUNTRY</p>
                                                             </div>
                                                             <div className='2xl:border-r-2 xl:border-r-2 2xl:border-[#FFF] xl:border-[#FFF] 2xl:ml-2 xl:ml-2'>

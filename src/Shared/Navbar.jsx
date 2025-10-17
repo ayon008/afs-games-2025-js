@@ -14,7 +14,7 @@ const Navbar = () => {
     return (
         <nav className='flex items-center justify-between text-white 2xl:p-10 xl:p-8 p-3 fixed top-0 right-0 left-0 z-50 max-w-[1920px] mx-auto'>
             <Link href={'/'}>
-                <Image src={logo} className='2xl:w-[92px] lg:w-[72px] w-[62px] h-auto' alt='logo' />
+                <Image src={logo} className='2xl:w-[92px] lg:w-[72px] w-[82px] h-auto' alt='logo' />
             </Link>
             <div className='flex items-center gap-1'>
                 <ul className='bg-[#000] 2xl:flex xl:flex lg:flex items-center rounded-[10px] 2xl:px-[15px] 2xl:py-[10px] xl:px-[12px] xl:py-[8px] hidden backdrop-blur-[10px]'>
