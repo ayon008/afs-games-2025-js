@@ -28,7 +28,8 @@ const Banner = () => {
                 <div className='flex items-center justify-center 2xl:mt-[85px] xl:mt-[65px] mt-[45px] 2xl:mb-[182px] xl:mb-[162px] mb-[132px]'>
                     <RegisBtn />
                 </div>
-                <p className='px-4 max-w-[1183px] 2xl:text-[25px] xl:text-[22px] text-lg font-light text-center text-white'>
+                <p className='px-4 max-w-[1183px] mx-auto w-full
+                2xl:text-[25px] xl:text-[22px] text-lg font-light text-center text-white'>
                     The AFS GAMES is an exclusive event, <span className='text-[#FFE500]'>reserved only for customers equipped with AFS foils*</span>. This unique event highlights several foil disciplines, offering an unprecedented and immersive experience for participants. The particularity of the AFS GAMES is that they take place online!
                 </p>
                 <p className='2xl:mt-[30px] xl:mt-[28px] mt-[26px] 2xl:text-lg xl:text-base text-sm text-center text-[#FFE500]'>*The AFS customer is designated by a practitioner owning at least one AFS foil and using it as part of the challenges. The choice of board and wing is free.</p>
