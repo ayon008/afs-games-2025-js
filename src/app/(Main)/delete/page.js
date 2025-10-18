@@ -5,7 +5,7 @@ import React from 'react';
 const Page = () => {
     const axiosPublic = useAxiosPublic();
     const handleDelete = () => {
-        const response = axiosPublic.delete("/gpxData");
+        const response = axiosPublic.patch("/gpxData");
         console.log(response);
 
     }

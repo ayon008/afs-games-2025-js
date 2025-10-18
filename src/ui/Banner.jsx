@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Sponsor from '@/Shared/Sponsor';
 import FaArrow from '@/icons/FaArrow';
 import { antiHero, morgana } from '@/app/(Main)/layout';
-import bannerImage from '../../public/assets/banner-image.png';
+import bannerImage from '../../public/assets/home-logo-png.png';
 import windfoil from "../../public/assets/Windfoil.jpg"
 import parawing from "../../public/assets/Parawing.jpg"
 import wingfoil from "../../public/assets/Wingfoil.jpg"

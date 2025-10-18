@@ -212,7 +212,7 @@ const UserForm = () => {
                 <label className="label text-white text-xs flex items-center gap-2">Upload Your Afs gear (invoice)
                     <span className="relative group inline-block">
                         <span className="w-4 h-4 rounded-full bg-[#FFE500] text-black text-[10px] font-bold flex items-center justify-center">?</span>
-                        <span className="absolute left-1/2 -translate-x-1/2 -top-10 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity duration-150 bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap z-50">You csn upload your invoice later in your profile</span>
+                        <span className="absolute left-1/2 -translate-x-1/2 -top-10 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity duration-150 bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap z-50">You can upload your invoice later in your profile</span>
                     </span>
                 </label>
                 <input
