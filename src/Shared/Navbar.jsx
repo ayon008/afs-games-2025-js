@@ -7,14 +7,14 @@ import User from '@/ui/User';
 import NavMobile from '@/Components/navMobile';
 import useAuth from '@/Hooks/useAuth';
 import image from '../../public/assets/insta.jpg'
-import { FaInstagram } from 'react-icons/fa';
+import { FaInstagram, FaPlus } from 'react-icons/fa';
 
 const Navbar = () => {
 
     const { user } = useAuth();
 
     const navItems = [
-        'Award', 'Challenge', 'Leaderboard', 'Faq', 'Contacts', `${user ? "+" : ""}`
+        'Award', 'Challenge', 'Leaderboard', 'Faq', 'Contacts', `${user ? "Add a Session" : ""}`
     ]
 
     return (
@@ -30,7 +30,7 @@ const Navbar = () => {
                             return (
                                 <li key={index} className='flex items-center'>
                                     <Link href={item === "+" ? "/profile/uploadUserData" : `/${item.toLowerCase()}`} passHref>
-                                        <p className='uppercase 2xl:text-base lg:text-base font-semibold'>{item === 'Faq' ? 'GUIDES ⏐ FAQ' : item}</p>
+                                        <p className='uppercase 2xl:text-base lg:text-sm font-semibold'>{item === 'Faq' ? 'GUIDES ⏐ FAQ' : item === "Add a Session" ? <span className='flex items-center justify-center gap-1'><FaPlus /> Add a Session</span> : item}</p>
                                     </Link>
                                     {
                                         // Only show separator between items (not after the last one)
