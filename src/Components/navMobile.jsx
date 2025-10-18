@@ -4,14 +4,15 @@ import useAuth from '@/Hooks/useAuth';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState, useRef, useEffect } from 'react';
+import { FaInstagram } from 'react-icons/fa';
 
 const NavMobile = () => {
-    const navItems = [
-        'Award', 'Challenge', 'Leaderboard', 'Faq', 'Contacts'
-    ]
+
     const userInfo = useAuth();
     const { user, logOut } = userInfo;
-
+    const navItems = [
+        'Award', 'Challenge', 'Leaderboard', 'Faq', 'Contacts', `${user ? "+" : ""}`
+    ]
     const [open, setOpen] = useState(false);
     const wrapperRef = useRef(null);
 
@@ -40,7 +41,7 @@ const NavMobile = () => {
                         user && <li className='flex gap-2'>
                             <Image src={user?.photoURL} alt='profile-picture' width={30} height={30} className='h-[30px] w-[30px] rounded-[50%] ml-3' />
                             <div className='flex items-center gap-1'>
-                                <p className='uppercase 2xl:text-base xl:text-xs text-base font-semibold text-white'>{user?.displayName}</p>
+                                <p className='uppercase 2xl:text-base xl:text-xs text-lg font-semibold text-white'>{user?.displayName}</p>
                             </div>
                         </li>
                     }
@@ -49,31 +50,37 @@ const NavMobile = () => {
                             return (
                                 <li key={i}>
                                     <Link href={`/${n.toLowerCase()}`} >
-                                        <p className='uppercase 2xl:text-base xl:text-xs text-[16px] font-semibold text-white'>{n === 'Faq' ? 'GUIDES ⏐ FAQ' : n}</p>
+                                        <p className='uppercase 2xl:text-base xl:text-xs text-lg font-semibold text-white'>{n === 'Faq' ? 'GUIDES ⏐ FAQ' : n}</p>
                                     </Link>
                                 </li>
                             )
                         })
                     }
+                    <li className=''>
+                        {/* <Image src={image} alt='' /> */}
+                        <Link href={'https://www.instagram.com/channel/AbZkDe67HTMb3TcQ/'}>
+                            <FaInstagram size={'1.5rem'}/>
+                        </Link>
+                    </li>
                     {
                         user ?
                             <>
                                 <li>
-                                    <Link href={`/profile?uid=${user?.uid}`} className='uppercase 2xl:text-base xl:text-xs text-base font-semibold text-white'>Profile</Link>
+                                    <Link href={`/profile?uid=${user?.uid}`} className='uppercase 2xl:text-base xl:text-xs text-lg font-semibold text-white'>Profile</Link>
                                 </li>
                                 <li>
-                                    <p onClick={() => logOut()} className='uppercase 2xl:text-base xl:text-xs text-base font-semibold text-white'>log out</p>
+                                    <p onClick={() => logOut()} className='uppercase 2xl:text-base xl:text-xs text-lg font-semibold text-white'>log out</p>
                                 </li>
                             </>
                             :
                             <>
                                 <li>
-                                    <Link href={'/login'} className='uppercase 2xl:text-base xl:text-xs text-base font-semibold text-white'>
+                                    <Link href={'/login'} className='uppercase 2xl:text-base xl:text-xs text-lg font-semibold text-white'>
                                         Login
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href={'/register'} className='uppercase 2xl:text-base xl:text-xs text-base font-semibold text-white'>
+                                    <Link href={'/register'} className='uppercase 2xl:text-base xl:text-xs text-lg font-semibold text-white'>
                                         Registration
                                     </Link>
                                 </li>
