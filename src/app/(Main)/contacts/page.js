@@ -88,7 +88,7 @@ const page = () => {
                     <a target='_blank' rel='noopener noreferrer' className="cursor-pointer" href={'https://www.facebook.com/afsfoils/'}>
                         <Image className='2xl:w-auto 2xl:h-auto xl:w-auto xl:h-auto w-[40px] h-auto' src={facebook} alt='facebook' />
                     </a>
-                    <a className='cursor-pointer' target='_blank' rel='noopener noreferrer' href='https://www.instagram.com/afsfoils/'>
+                    <a className='cursor-pointer' target='_blank' rel='noopener noreferrer' href='https://www.instagram.com/channel/AbZkDe67HTMb3TcQ/'>
                         <Image className='2xl:w-auto 2xl:h-auto xl:w-auto xl:h-auto w-[45px] h-auto' src={instagram} alt='instagram' />
                     </a>
                     <a className='cursor-pointer' target='_blank' rel='noopener noreferrer' href='https://www.youtube.com/channel/UCv-LqvRBRFQWBSJSeIZK_5g'>

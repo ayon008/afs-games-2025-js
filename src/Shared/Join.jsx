@@ -2,6 +2,8 @@ import { morgana } from '@/app/(Main)/layout';
 import logo from '../../public/logo afs games (3).svg'
 import Image from 'next/image';
 import RegisBtn from '@/Components/RegisBtn';
+import { FaInstagram } from 'react-icons/fa';
+import Link from 'next/link';
 
 const Join = ({ home }) => {
     return (
@@ -15,13 +17,19 @@ const Join = ({ home }) => {
                         </p>
 
                         <p className={`text-white 2xl:text-2xl xl:text-xl text-lg mt-10`}>Don’t miss this unique opportunity to experience the Foiling Spirit!</p>
+                        <p className={` 2xl:text-4xl xl:text-3xl text-2xl text-[#FFE500] mt-10 ${morgana.className} flex items-center gap-2`}>
+                            <span>JOIN THE AFS GAMES INSTAGRAM CHANNEL</span>
+                            <Link href={'https://www.instagram.com/channel/AbZkDe67HTMb3TcQ/'}>
+                                <FaInstagram />
+                            </Link>
+                        </p>
                     </div>
                 </div>
                 <div className='z-40 flex flex-col justify-end ml-0 h-full'>
                     <div className='w-fit lg:ml-auto'>
                         <RegisBtn />
                     </div>
-                    <div className='xl:mt-[170px] 2xl:mt-[190px] mt-10 ml-5 lg:ml-0'>
+                    <div className='xl:mt-[280px] 2xl:mt-[300px] mt-10 ml-5 lg:ml-0'>
                         <ul className='list-disc text-white space-y-2'>
                             <li className='text-lg [&::marker]:text-[#FFE500] [&::marker]:text-2xl'>Price : Free</li>
                             <li className='text-lg [&::marker]:text-[#FFE500] [&::marker]:text-2xl'>Date : 20th October- 8th December </li>

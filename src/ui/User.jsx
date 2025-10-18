@@ -24,7 +24,7 @@ const User = () => {
                                 <Image src={profileImage} alt='profile-picture' className='h-[20px] w-[20px] rounded-[50%]' />
                         }
                         <div className='flex items-center gap-1'>
-                            <p className='uppercase 2xl:text-base lg:text-xs font-semibold'>{user?.displayName}</p>
+                            <p className='uppercase 2xl:text-base lg:text-base font-semibold'>{user?.displayName}</p>
                             <FaChevronDown className='mt-1' color='red' size={'0.8rem'} />
                         </div>
                     </div>
@@ -40,8 +40,8 @@ const User = () => {
             </li>
             :
             <>
-                <li className='uppercase 2xl:text-base lg:text-xs font-semibold font-alliance bg-[#000] 2xl:flex xl:flex lg:flex items-center rounded-[10px] 2xl:px-[15px] 2xl:py-[10px] xl:px-[12px] xl:py-[8px] hidden backdrop-blur-[10px]'>
-                    <Link href={'/login'} className='text-[#FFF] opacity-50'>
+                <li className='uppercase 2xl:text-base lg:text-base font-semibold font-alliance bg-[#000] 2xl:flex xl:flex lg:flex items-center rounded-[10px] 2xl:px-[15px] 2xl:py-[10px] xl:px-[12px] xl:py-[8px] hidden backdrop-blur-[10px]'>
+                    <Link href={'/login'} className='text-[#FFF] opacity-50 '>
                         Login
                     </Link>
                     <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500] mx-4'>

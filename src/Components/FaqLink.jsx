@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import '../Components/faq.css'
+import { replaceAfsGamesDate } from '@/lib/copy';
 
 const Description = ({ description }) => {
     const [sanitizedDescription, setSanitizedDescription] = useState('');
@@ -9,7 +10,8 @@ const Description = ({ description }) => {
         // Dynamically import DOMPurify only on the client side
         const sanitizeHTML = async () => {
             const DOMPurify = (await import('dompurify')).default;
-            setSanitizedDescription(DOMPurify.sanitize(description));
+            const updated = replaceAfsGamesDate(description || '');
+            setSanitizedDescription(DOMPurify.sanitize(updated));
         };
 
         sanitizeHTML();

@@ -6,6 +6,8 @@ import Link from 'next/link';
 import User from '@/ui/User';
 import NavMobile from '@/Components/navMobile';
 import useAuth from '@/Hooks/useAuth';
+import image from '../../public/assets/insta.jpg'
+import { FaInstagram } from 'react-icons/fa';
 
 const Navbar = () => {
 
@@ -28,16 +30,22 @@ const Navbar = () => {
                             return (
                                 <li key={index} className='flex items-center'>
                                     <Link href={item === "+" ? "/profile/uploadUserData" : `/${item.toLowerCase()}`} passHref>
-                                        <p className='uppercase 2xl:text-base lg:text-xs font-semibold'>{item === 'Faq' ? 'GUIDES ⏐ FAQ' : item}</p>
+                                        <p className='uppercase 2xl:text-base lg:text-base font-semibold'>{item === 'Faq' ? 'GUIDES ⏐ FAQ' : item}</p>
                                     </Link>
                                     {
                                         // Only show separator between items (not after the last one)
-                                        index !== arr.length - 1 && <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500] mx-4' />
+                                        <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500] mx-4' />
                                     }
                                 </li>
                             )
                         })
                     }
+                    <li className='flex items-center'>
+                        {/* <Image src={image} alt='' /> */}
+                        <Link href={'https://www.instagram.com/channel/AbZkDe67HTMb3TcQ/'}>
+                            <FaInstagram className='text-2xl' />
+                        </Link>
+                    </li>
                 </ul>
                 <ul className=''>
                     <User />
