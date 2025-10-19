@@ -29,7 +29,7 @@ const Navbar = () => {
                             return (
                                 <li key={index} className='flex items-center'>
                                     <Link href={item === "Add a Session" ? "/profile/uploadUserData" : `/${item.toLowerCase()}`} passHref>
-                                        <p className='uppercase 2xl:text-base lg:text-sm font-semibold'>{item === 'Faq' ? 'GUIDES ⏐ FAQ' : item === "Add a Session" ? <span className='flex items-center justify-center gap-1'><FaPlus /> Add a Session</span> : item}</p>
+                                        <p className='uppercase 2xl:text-base lg:text-sm font-semibold'>{item === 'Faq' ? 'GUIDES ⏐ FAQ' : item === "Add a Session" ? <span className='flex items-center justify-center gap-1'><FaPlus className='text-[#FFE500]' /> Add a Session</span> : item}</p>
                                     </Link>
                                     {
                                         // Only show separator between items (not after the last one)
