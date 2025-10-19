@@ -10,9 +10,10 @@ const NavMobile = () => {
 
     const userInfo = useAuth();
     const { user, logOut } = userInfo;
+
     const navItems = [
-        'Award', 'Challenge', 'Leaderboard', 'Faq', 'Contacts', `${user ? "+" : ""}`
-    ]
+        'Award', 'Challenge', 'Leaderboard', 'Faq', 'Contacts', `${user ? "Add a Session" : ""}`
+    ].filter(Boolean);
     const [open, setOpen] = useState(false);
     const wrapperRef = useRef(null);
 
@@ -38,28 +39,32 @@ const NavMobile = () => {
                 open &&
                 <ul tabIndex={0} className="dropdown-content menu bg-black rounded-box z-[1] w-52 p-2 shadow text-white">
                     {
-                        user && <li className='flex gap-2'>
-                            <Image src={user?.photoURL} alt='profile-picture' width={30} height={30} className='h-[30px] w-[30px] rounded-[50%] ml-3' />
+                        user && <li className='flex gap-2 items-start pt-2'>
+                            {user?.photoURL ? (
+                                <Image src={user.photoURL} alt='profile-picture' width={30} height={30} className='h-[30px] w-[30px] rounded-[50%] ml-3' />
+                            ) : (
+                                <div className='w-[30px] h-[30px] rounded-[50%] bg-[#333] flex items-center justify-center ml-3 text-white text-sm'>
+                                    {user?.displayName?.charAt(0)?.toUpperCase() || 'U'}
+                                </div>
+                            )}
                             <div className='flex items-center gap-1'>
                                 <p className='uppercase 2xl:text-base xl:text-xs text-lg font-semibold text-white'>{user?.displayName}</p>
                             </div>
                         </li>
                     }
                     {
-                        navItems?.map((n, i) => {
-                            return (
-                                <li key={i}>
-                                    <Link href={`/${n.toLowerCase()}`} >
-                                        <p className='uppercase 2xl:text-base xl:text-xs text-lg font-semibold text-white'>{n === 'Faq' ? 'GUIDES ⏐ FAQ' : n}</p>
-                                    </Link>
-                                </li>
-                            )
-                        })
+                        navItems.map((n, i) => (
+                            <li key={i}>
+                                <Link href={`/${n.toLowerCase()}`}>
+                                    <p className='uppercase 2xl:text-base xl:text-xs text-lg font-semibold text-white'>{n === 'Faq' ? 'GUIDES ⏐ FAQ' : n}</p>
+                                </Link>
+                            </li>
+                        ))
                     }
                     <li className=''>
                         {/* <Image src={image} alt='' /> */}
                         <Link href={'https://www.instagram.com/channel/AbZkDe67HTMb3TcQ/'}>
-                            <FaInstagram size={'1.5rem'}/>
+                            <FaInstagram size={'1.5rem'} />
                         </Link>
                     </li>
                     {

@@ -12,10 +12,9 @@ import { FaInstagram, FaPlus } from 'react-icons/fa';
 const Navbar = () => {
 
     const { user } = useAuth();
-
     const navItems = [
         'Award', 'Challenge', 'Leaderboard', 'Faq', 'Contacts', `${user ? "Add a Session" : ""}`
-    ]
+    ].filter(Boolean);
 
     return (
         <nav className='flex items-center justify-between text-white 2xl:p-10 xl:p-8 p-3 fixed top-0 right-0 left-0 z-50 max-w-[1920px] mx-auto'>
