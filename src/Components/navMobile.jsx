@@ -55,7 +55,7 @@ const NavMobile = () => {
                     {
                         navItems.map((n, i) => (
                             <li key={i}>
-                                <Link href={`/${n.toLowerCase()}`}>
+                                <Link href={n === "Add a Session" ? "/profile/uploadUserData" : `/${n.toLowerCase()}`} passHref>
                                     <p className='uppercase 2xl:text-base xl:text-xs text-lg font-semibold text-white'>{n === 'Faq' ? 'GUIDES ⏐ FAQ' : n}</p>
                                 </Link>
                             </li>
