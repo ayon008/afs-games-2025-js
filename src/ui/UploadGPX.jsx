@@ -59,7 +59,7 @@ const UploadGPX = ({ data }) => {
         });
     };
 
-    // Ayon
+    // Fn updated
     const router = useRouter();
 
     const { getRootProps, getInputProps, acceptedFiles, isDragActive, isDragAccept, isDragReject } = useDropzone({
