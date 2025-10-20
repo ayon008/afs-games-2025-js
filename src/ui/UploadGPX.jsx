@@ -16,6 +16,7 @@ import { useRouter } from 'next/navigation';
 import GetUserData from '@/lib/getUserData';
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
 import storeGPX from '@/js/storeGpx';
+import storeGeojson from '@/js/storeGeojson';
 import GetBlock from '@/lib/getBlock';
 
 const UploadGPX = ({ data }) => {
@@ -117,9 +118,14 @@ const UploadGPX = ({ data }) => {
                 },
             });
             try {
+                // Upload original GPX file to Firebase Storage
                 const gpxURL = await storeGPX(uploadedFiles[0]);
-                if (gpxURL) {
+                // Upload the parsed GeoJSON as a separate small file to Firebase Storage
+                const geojsonURL = await storeGeojson(geojson, uploadedFiles[0]?.name);
+
+                if (gpxURL && geojsonURL) {
                     try {
+                        // Send only small metadata and URLs to the backend to avoid large request bodies
                         await axiosPublic.post('/geoJson', {
                             totalTime,
                             distance: totalDistance,
@@ -128,10 +134,11 @@ const UploadGPX = ({ data }) => {
                             createdTime,
                             filename: uploadedFiles[0]?.name,
                             gpxURL,
-                            geojson: geojson,
+                            geojsonURL,
                             time: new Date(),
                             status: true,
                         });
+
                         Swal.fire({
                             icon: 'success',
                             title: 'Success',
@@ -154,11 +161,11 @@ const UploadGPX = ({ data }) => {
                     }
                 }
                 else {
-                    console.error('Error storing file:', error);
+                    console.error('Error storing file or geojson');
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: "Failed to save the file.",
+                        text: "Failed to save the file or geojson.",
                     });
                 }
             } catch (error) {
