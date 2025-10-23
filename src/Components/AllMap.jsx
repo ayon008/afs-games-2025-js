@@ -79,7 +79,7 @@ const customMarker = `<?xml version="1.0" encoding="UTF-8"?>
 </defs>
 </svg>`;
 
-const AllMap = ({ cities, pointTable = [], zoom = 10 }) => {
+const AllMap = ({ cities, pointTable = [], zoom = 3, maxZoom = 18, minZoom = 2 }) => {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY // Replace with your actual API key
@@ -150,7 +150,13 @@ const AllMap = ({ cities, pointTable = [], zoom = 10 }) => {
 
     const onLoad = useCallback((map) => {
         mapRef.current = map;
-    }, []);
+        // enforce runtime zoom limits (some options are safer to set after load)
+        try {
+            mapRef.current.setOptions({ maxZoom, minZoom });
+        } catch (e) {
+            // ignore
+        }
+    }, [maxZoom, minZoom]);
 
     const onUnmount = useCallback(() => {
         mapRef.current = null;
@@ -158,8 +164,10 @@ const AllMap = ({ cities, pointTable = [], zoom = 10 }) => {
 
     const mapOptions = useMemo(() => ({
         disableDefaultUI: true,
-        styles: defaultStyle
-    }), []);
+        styles: defaultStyle,
+        maxZoom,
+        minZoom
+    }), [maxZoom, minZoom]);
 
     const containerStyle = {
         width: '100%',
@@ -175,7 +183,7 @@ const AllMap = ({ cities, pointTable = [], zoom = 10 }) => {
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={3}
+                zoom={zoom}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
                 options={mapOptions}
