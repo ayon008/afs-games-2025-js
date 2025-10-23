@@ -13,6 +13,51 @@ li:focus {
     outline: none !important;
 }
 
+.gm-style-iw-d {
+    background-color: black !important;
+}
+
+.gm-ui-hover-effect {
+    color: white !important;
+    background-color: white !important;
+}
+
+[role="dialog"] {
+    background-color: black !important;
+}
+
+.gm-style-iw-chr {
+    background-color: black !important;
+}
+
+.gm-ui-hover-effect {
+    background-color: black !important;
+    color: white !important;
+}
+
+.gm-ui-hover-effect > span {
+    background-color: white !important;
+}
+
+.gm-style-iw .gm-style-iw-c {
+    background-color: black !important;
+    padding-left: 0px !important;
+}
+
+.gm-style-iw-t {
+    background-color: black !important;
+    padding-left: 0px !important;
+}
+
+
+.gm-style-iw-ch {
+    background-color: black !important;
+}
+
+/* .gm-style-iw-chr {
+    background-color: black !important;
+} */
+
 .menu li a:focus {
     @apply text-white !important;
 }
