@@ -79,7 +79,7 @@ const customMarker = `<?xml version="1.0" encoding="UTF-8"?>
 </defs>
 </svg>`;
 
-const AllMap = ({ cities, pointTable = [], zoom = 3, maxZoom = 18, minZoom = 2 }) => {
+const AllMap = ({ cities, pointTable = [], zoom = 3, maxZoom = 18, minZoom = 2.5 }) => {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY // Replace with your actual API key
@@ -169,10 +169,10 @@ const AllMap = ({ cities, pointTable = [], zoom = 3, maxZoom = 18, minZoom = 2 }
         minZoom
     }), [maxZoom, minZoom]);
 
-    const containerStyle = {
+    const containerStyle = useMemo(() => ({
         width: '100%',
-        height: '500px'
-    };
+        height: isMobile ? '700px' : '90vh'
+    }), [isMobile]);
 
     const center = mapCenter;
 
