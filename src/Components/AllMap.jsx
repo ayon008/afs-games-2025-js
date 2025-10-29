@@ -171,7 +171,8 @@ const AllMap = ({ cities, pointTable = [], zoom = 3, maxZoom = 18, minZoom = 2.5
 
     const containerStyle = useMemo(() => ({
         width: '100%',
-        height: isMobile ? '700px' : '90vh'
+        borderRadius: '24px',
+        height: isMobile ? '100vh' : '100vh'
     }), [isMobile]);
 
     const center = mapCenter;
@@ -179,7 +180,7 @@ const AllMap = ({ cities, pointTable = [], zoom = 3, maxZoom = 18, minZoom = 2.5
     if (!isLoaded) return <div>Loading...</div>;
 
     return (
-        <section>
+        <section className=''>
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
@@ -256,7 +257,7 @@ const AllMap = ({ cities, pointTable = [], zoom = 3, maxZoom = 18, minZoom = 2.5
                 {/* Mobile bottom sheet */}
                 {isMobile && selected && (
                     <div className="fixed left-4 right-4 bottom-6 z-50">
-                        <div className="bg-black/95 text-white rounded-xl shadow-xl border border-white/10 p-5 max-h-[60vh] overflow-y-auto">
+                        <div className="bg-black/95 text-white rounded-lg shadow-xl border border-white/10 p-5 max-h-[60vh] overflow-y-auto">
                             <div className="flex items-center justify-between mb-2">
                                 <div className="text-lg font-semibold">{selected.name}</div>
                                 <button
