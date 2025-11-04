@@ -24,6 +24,7 @@ const SelectTab = ({ pointTable }) => {
     const [filterPays, setFilterPays] = useState('');
     const [filterAge, setFilterAge] = useState('');
     const [filterTeam, setFilterTeam] = useState('');
+    const [filterCategory, setFilterCategory] = useState('');
     const [displayMode, setDisplayMode] = useState('name'); // 'name' or 'team'
     const [page, setPage] = useState(1);
     const pageSize = 10;
@@ -34,8 +35,14 @@ const SelectTab = ({ pointTable }) => {
     // Combined dataset for the multi-discipline table (sorted by total)
     const base = (pointTable || []).filter(Boolean);
     const sortedAll = [...base].sort((a, b) => (b.total || 0) - (a.total || 0));
+    // Sort data based on selected category if filter is active
+    const sortedByCategory = filterCategory ? [...base].sort((a, b) => {
+        const aValue = (a?.[filterCategory] || 0) + (a?.[filterCategory + 'Distance'] || 0);
+        const bValue = (b?.[filterCategory] || 0) + (b?.[filterCategory + 'Distance'] || 0);
+        return bValue - aValue;
+    }) : sortedAll;
     const normalizedSearchAll = searchTerm.trim().toLowerCase();
-    const newData = sortedAll.filter(item => {
+    const newData = (filterCategory ? sortedByCategory : sortedAll).filter(item => {
         if (normalizedSearchAll) {
             // Match against displayName OR team (case-insensitive)
             const name = (item?.displayName || '').toLowerCase();
@@ -45,9 +52,17 @@ const SelectTab = ({ pointTable }) => {
         if (filterPays && String((item?.pays) || '') !== String(filterPays)) return false;
         if (filterAge && String((item?.age) || '') !== String(filterAge)) return false;
         if (filterTeam && String((item?.team) || '') !== String(filterTeam)) return false;
+        if (filterCategory) {
+            // Check if the user has any data (time or distance) for the selected category
+            const hasTime = item?.[filterCategory] > 0;
+            const hasDistance = item?.[filterCategory + 'Distance'] > 0;
+            if (!hasTime && !hasDistance) return false;
+        }
         return true;
     });
     const paginatedAll = newData.slice(0, itemsToShow);
+    console.log(paginatedAll);
+    
 
     const handleOpen = (pos) => {
         if (index === pos) {
@@ -62,8 +77,9 @@ const SelectTab = ({ pointTable }) => {
         <div className='lg:px-0 px-4'>
             <div className="lg:px-0 px-4">
                 {(() => {
-                    const currentCategory = categories[tabIndex];
+                    const currentCategory = filterCategory || categories[tabIndex];
                     const currentSorted = sortDataByTime(pointTable, currentCategory) || [];
+
                     // Use the combined base dataset for filter options so filters work across the 'All' view
                     const paysOptions = Array.from(new Set(base.map(s => s?.pays).filter(Boolean)));
                     const ageOptions = Array.from(new Set(base.map(s => s?.age).filter(Boolean))).sort((a, b) => a - b);
@@ -92,6 +108,16 @@ const SelectTab = ({ pointTable }) => {
                             >
                                 <option value=''>All countries</option>
                                 {paysOptions.map(p => <option key={p} value={p}>{p}</option>)}
+                            </select>
+                            <select
+                                value={filterCategory}
+                                onChange={(e) => { setFilterCategory(e.target.value); setPage(1); }}
+                                className="select select-md select-bordered w-full md:w-1/6 ring-0 outline-0 focus:ring-0 focus:outline-0"
+                            >
+                                <option value=''>All categories</option>
+                                {categories.map(category => (
+                                    <option key={category} value={category}>{category.toUpperCase()}</option>
+                                ))}
                             </select>
                             {/* <input
                                 type="number"
@@ -131,14 +157,34 @@ const SelectTab = ({ pointTable }) => {
             <div className='w-full overflow-x-auto'>
                 <div className="overflow-x-auto w-full 2xl:mt-10 xl:mt-6 mt-3">
                     <table className="table">
-                        <TableHead profile={true} tableHead={['#', 'Participant', 'Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'DW', 'Parawing', 'Total Time']} />
+                        <TableHead 
+                            profile={true} 
+                            tableHead={
+                                filterCategory 
+                                    ? ['#', 'Participant', filterCategory, 'Total Time']
+                                    : ['#', 'Participant', 'Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'DW', 'Parawing', 'Total Time']
+                            } 
+                        />
                         <tbody>
                             {
                                 paginatedAll?.map((d, i) => {
-                                    const pos = sortedAll.indexOf(d) + 1;
+                                    const pos = filterCategory 
+                                        ? sortedByCategory.indexOf(d) + 1 
+                                        : sortedAll.indexOf(d) + 1;
+                                    const total = filterCategory 
+                                        ? (d[filterCategory] || 0) + (d[filterCategory + 'Distance'] || 0)
+                                        : d.total;
                                     return (
                                         <React.Fragment key={d?.uid || i}>
-                                            <TableRow data={d} uid={userData?.uid} position={pos} onClick={() => handleOpen(pos)} displayMode={displayMode} isOpen={index === pos && open} />
+                                            <TableRow 
+                                                data={d} 
+                                                uid={userData?.uid} 
+                                                position={pos} 
+                                                onClick={() => handleOpen(pos)} 
+                                                displayMode={displayMode} 
+                                                isOpen={index === pos && open}
+                                                filterCategory={filterCategory}
+                                            />
                                             {index === pos && open && (
                                                 <tr>
                                                     <td colSpan={'9'} className='p-0'>

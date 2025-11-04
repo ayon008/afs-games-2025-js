@@ -4,7 +4,7 @@ import CountryFlagList from '@/js/GetFlags';
 import profileImage from '@/../public/Profile_avatar_placeholder_large.png'
 import Image from 'next/image';
 
-const TableRow = ({ data, position, uid, onClick, displayMode = 'name', isOpen = false }) => {
+const TableRow = ({ data, position, uid, onClick, displayMode = 'name', isOpen = false, filterCategory = '' }) => {
     const { Wingfoil, Windfoil, dockstart, surfFoil, dw, WatermanCrown, displayName, photoURL, total, Parawing, team } = data;
     const isCurrent = uid && data?.uid && String(data.uid) === String(uid);
     // If a row is open (clicked), white background and black text should take precedence
@@ -29,27 +29,40 @@ const TableRow = ({ data, position, uid, onClick, displayMode = 'name', isOpen =
                     </h3>
                 </div>
             </td>
-            <td className={`2xl:text-lg xl:text-base text-sm font-medium group-hover:text-black ${activeBgClass ? activeBgClass : 'text-white'}`}>
-                {Wingfoil ? Wingfoil?.toFixed(2) + ' ' + 'hours' : '0 hours'}
-            </td>
-            <td className={`2xl:text-lg xl:text-base text-sm group-hover:text-black font-medium ${activeBgClass ? activeBgClass : 'text-white'}`}>
-                {Windfoil ? Windfoil?.toFixed(2) + ' ' + 'hours' : '0 hours'}
-            </td>
-            <td className={` 2xl:text-lg xl:text-base text-sm group-hover:text-black font-medium ${activeBgClass ? activeBgClass : 'text-white'}`}>
-                {dockstart ? dockstart?.toFixed(2) + ' ' + 'hours' : '0 hours'}
-            </td>
-            <td className={` 2xl:text-lg xl:text-base text-sm group-hover:text-black font-medium ${activeBgClass ? activeBgClass : 'text-white'}`}>
-                {surfFoil ? surfFoil?.toFixed(2) + ' ' + 'hours' : '0 hours'}
-            </td>
-            <td className={` 2xl:text-lg xl:text-base text-sm group-hover:text-black font-medium ${activeBgClass ? activeBgClass : 'text-white'}`}>
-                {dw ? dw?.toFixed(2) + ' ' + 'hours' : '0 hours'}
-            </td>
-            <td className={` 2xl:text-lg xl:text-base text-sm group-hover:text-black  font-medium ${activeBgClass ? activeBgClass : 'text-white'}`}>
-                {Parawing ? Parawing?.toFixed(2) + ' ' + 'hours' : '0 hours'}
-            </td>
-            <td className={`2xl:text-lg xl:text-base text-sm group-hover:rounded-r-xl group-hover:text-black font-medium text-right ${activeBgClass ? activeBgClass + ' rounded-r-xl' : 'text-white'}`}>
-                {total?.toFixed(2) + ' ' + 'hours' || '0 hours'}
-            </td>
+            {filterCategory ? (
+                <>
+                    <td className={`2xl:text-lg xl:text-base text-sm font-medium group-hover:text-black ${activeBgClass ? activeBgClass : 'text-white'}`}>
+                        {data[filterCategory] ? data[filterCategory]?.toFixed(2) + ' hours' : '0 hours'}
+                    </td>
+                    <td className={`2xl:text-lg xl:text-base text-sm group-hover:rounded-r-xl group-hover:text-black font-medium !text-right ${activeBgClass ? activeBgClass + ' rounded-r-xl' : 'text-white'}`}>
+                        {(data[filterCategory] || 0)?.toFixed(2) + ' hours'}
+                    </td>
+                </>
+            ) : (
+                <>
+                    <td className={`2xl:text-lg xl:text-base text-sm font-medium group-hover:text-black ${activeBgClass ? activeBgClass : 'text-white'}`}>
+                        {Wingfoil ? Wingfoil?.toFixed(2) + ' hours' : '0 hours'}
+                    </td>
+                    <td className={`2xl:text-lg xl:text-base text-sm group-hover:text-black font-medium ${activeBgClass ? activeBgClass : 'text-white'}`}>
+                        {Windfoil ? Windfoil?.toFixed(2) + ' hours' : '0 hours'}
+                    </td>
+                    <td className={` 2xl:text-lg xl:text-base text-sm group-hover:text-black font-medium ${activeBgClass ? activeBgClass : 'text-white'}`}>
+                        {dockstart ? dockstart?.toFixed(2) + ' hours' : '0 hours'}
+                    </td>
+                    <td className={` 2xl:text-lg xl:text-base text-sm group-hover:text-black font-medium ${activeBgClass ? activeBgClass : 'text-white'}`}>
+                        {surfFoil ? surfFoil?.toFixed(2) + ' hours' : '0 hours'}
+                    </td>
+                    <td className={` 2xl:text-lg xl:text-base text-sm group-hover:text-black font-medium ${activeBgClass ? activeBgClass : 'text-white'}`}>
+                        {dw ? dw?.toFixed(2) + ' hours' : '0 hours'}
+                    </td>
+                    <td className={` 2xl:text-lg xl:text-base text-sm group-hover:text-black font-medium ${activeBgClass ? activeBgClass : 'text-white'}`}>
+                        {Parawing ? Parawing?.toFixed(2) + ' hours' : '0 hours'}
+                    </td>
+                    <td className={`2xl:text-lg xl:text-base text-sm group-hover:rounded-r-xl group-hover:text-black font-medium !text-right ${activeBgClass ? activeBgClass + ' rounded-r-xl' : 'text-white'}`}>
+                        {total?.toFixed(2) + ' hours'}
+                    </td>
+                </>
+            )}
         </tr>
     );
 };
