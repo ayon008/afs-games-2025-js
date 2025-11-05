@@ -62,7 +62,7 @@ const SelectTab = ({ pointTable }) => {
     });
     const paginatedAll = newData.slice(0, itemsToShow);
     console.log(paginatedAll);
-    
+
 
     const handleOpen = (pos) => {
         if (index === pos) {
@@ -116,7 +116,7 @@ const SelectTab = ({ pointTable }) => {
                             >
                                 <option value=''>All categories</option>
                                 {categories.map(category => (
-                                    <option key={category} value={category}>{category.toUpperCase()}</option>
+                                    <option key={category} value={category}>{category === 'surfFoil' ? 'PRON FOIL' : category === 'dw' ? 'DOWNWIND' : category.toUpperCase()}</option>
                                 ))}
                             </select>
                             {/* <input
@@ -157,31 +157,31 @@ const SelectTab = ({ pointTable }) => {
             <div className='w-full overflow-x-auto'>
                 <div className="overflow-x-auto w-full 2xl:mt-10 xl:mt-6 mt-3">
                     <table className="table">
-                        <TableHead 
-                            profile={true} 
+                        <TableHead
+                            profile={true}
                             tableHead={
-                                filterCategory 
-                                    ? ['#', 'Participant', filterCategory, 'Total Time']
+                                filterCategory
+                                    ? ['#', 'Participant', filterCategory === 'surfFoil' ? "Pron Foil" : filterCategory === "dw" ? "Downwind" : filterCategory === 'dockstart' ? "Dockstart" : filterCategory, 'Total Time']
                                     : ['#', 'Participant', 'Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'DW', 'Parawing', 'Total Time']
-                            } 
+                            }
                         />
                         <tbody>
                             {
                                 paginatedAll?.map((d, i) => {
-                                    const pos = filterCategory 
-                                        ? sortedByCategory.indexOf(d) + 1 
+                                    const pos = filterCategory
+                                        ? sortedByCategory.indexOf(d) + 1
                                         : sortedAll.indexOf(d) + 1;
-                                    const total = filterCategory 
+                                    const total = filterCategory
                                         ? (d[filterCategory] || 0) + (d[filterCategory + 'Distance'] || 0)
                                         : d.total;
                                     return (
                                         <React.Fragment key={d?.uid || i}>
-                                            <TableRow 
-                                                data={d} 
-                                                uid={userData?.uid} 
-                                                position={pos} 
-                                                onClick={() => handleOpen(pos)} 
-                                                displayMode={displayMode} 
+                                            <TableRow
+                                                data={d}
+                                                uid={userData?.uid}
+                                                position={pos}
+                                                onClick={() => handleOpen(pos)}
+                                                displayMode={displayMode}
                                                 isOpen={index === pos && open}
                                                 filterCategory={filterCategory}
                                             />

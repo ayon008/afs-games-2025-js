@@ -74,7 +74,7 @@ export default function RootLayout({ children }) {
               <div className="min-h-screen banner">
                 {children}
               </div>
-                  <CrispChat />
+                  {/* <CrispChat /> */}
               {/* <Footer /> */}
             </AuthProvider>
           </QueryProvider>
