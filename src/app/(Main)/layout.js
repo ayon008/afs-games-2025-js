@@ -3,6 +3,7 @@ import "../globals.css";
 import Navbar from "@/Shared/Navbar";
 import AuthProvider from "@/Provider/AuthProvider";
 import QueryProvider from "@/Provider/QueryProvider";
+import CrispChat from '@/Components/CrispChat';
 
 const allianceNo2 = localfont(
   {
@@ -73,6 +74,7 @@ export default function RootLayout({ children }) {
               <div className="min-h-screen banner">
                 {children}
               </div>
+                  <CrispChat />
               {/* <Footer /> */}
             </AuthProvider>
           </QueryProvider>

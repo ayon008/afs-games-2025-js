@@ -4,7 +4,6 @@ import Image from "next/image";
 import bgImage from '../../../public/afs-games-background.png'
 import AuthProvider from "@/Provider/AuthProvider";
 import logo from '../../../public/logo afs games (3).svg'
-import Script from "next/script";
 
 const allianceNo2 = localfont(
     {
