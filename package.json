@@ -21,6 +21,7 @@
     "fs": "^0.0.1-security",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
+    "matrix-js-sdk": "^39.1.2",
     "next": "14.2.6",
     "pdfjs-dist": "^3.11.174",
     "react": "^18",

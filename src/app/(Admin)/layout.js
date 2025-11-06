@@ -1,9 +1,8 @@
 import localfont from "next/font/local"
 import "../globals.css";
-import AuthProvider from "@/Provider/AuthProvider";
 import Link from "next/link";
 import QueryProvider from "@/Provider/QueryProvider";
-import CrispChat from '@/Components/CrispChat';
+import AuthProvider from "@/Provider/AuthProvider";
 
 const allianceNo2 = localfont(
     {
@@ -56,7 +55,6 @@ export default function RootLayout({ children }) {
                                     </label>
                                     {children}
                                 </div>
-                                <CrispChat />
                                 <div className="drawer-side ">
                                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                                     <ul className="menu text-black min-h-full 2xl:w-80 xl:w-80 min-w-1/2 p-4 bg-[#FFE500]">

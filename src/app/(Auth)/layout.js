@@ -2,9 +2,8 @@ import localfont from "next/font/local"
 import "../globals.css";
 import Image from "next/image";
 import bgImage from '../../../public/afs-games-background.png'
-import AuthProvider from "@/Provider/AuthProvider";
 import logo from '../../../public/logo afs games (3).svg'
-import CrispChat from '@/Components/CrispChat';
+import AuthProvider from "@/Provider/AuthProvider";
 
 const allianceNo2 = localfont(
     {
@@ -37,7 +36,6 @@ export default function RootLayout({ children }) {
                         <div className="absolute w-full !z-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                             {children}
                         </div>
-                        <CrispChat />
                     </main>
                 </AuthProvider>
             </body>

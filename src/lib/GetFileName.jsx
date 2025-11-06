@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 const GetFileName = () => {
     const axiosPublic = useAxiosPublic();
-    const { user } = useAuth();
+    const { user, loader } = useAuth();
     const [uid, setUid] = useState(null);
     useEffect(() => {
         const uid = user?.uid;
@@ -26,8 +26,13 @@ const GetFileName = () => {
                 throw err; // Rethrow the error to be caught by React Query
             }
         },
+        // Only run this query once we know loading is finished and we have a uid
+        enabled: !!uid && !loader,
+        // Provide a default value so consumers don't have to check for undefined
+        initialData: [],
     });
-    return { isLoading: false, files, refetch };
+
+    return { isLoading, isError, error, files: files || [], refetch };
 };
 
 export default GetFileName;
