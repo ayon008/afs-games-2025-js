@@ -56,7 +56,7 @@ const TableRow = ({ data, position, uid, onClick, displayMode = 'name', isOpen =
                         {dw ? dw?.toFixed(2) + ' hours' : '0 hours'}
                     </td>
                     <td className={` 2xl:text-lg xl:text-base text-sm group-hover:text-black font-medium ${activeBgClass ? activeBgClass : 'text-white'}`}>
-                        {Parawing ? Parawing?.toFixed(2) + ' hours' : '0 hours'}
+                        {Parawing ? Math.abs(Parawing?.toFixed(2)) + ' hours' : '0 hours'}
                     </td>
                     <td className={`2xl:text-lg xl:text-base text-sm group-hover:rounded-r-xl group-hover:text-black font-medium !text-right ${activeBgClass ? activeBgClass + ' rounded-r-xl' : 'text-white'}`}>
                         {total?.toFixed(2) + ' hours'}

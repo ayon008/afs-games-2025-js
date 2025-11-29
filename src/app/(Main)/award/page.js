@@ -54,7 +54,7 @@ const page = async () => {
                 <p className='text-white/60 2xl:text-4xl xl:text-3xl text-2xl font-semibold text-center 2xl:my-[76px] xl:my-[56px] my-[40px]'>Time spent on water in wingfoil, downwind, windfoil, dockstart, surf foil</p>
                 <Award />
             </div>
-            <div className='top-margin'>
+            <div className=''>
                 <Join />
             </div>
         </div>

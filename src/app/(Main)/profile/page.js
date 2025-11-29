@@ -120,7 +120,7 @@ const page = async ({ searchParams }) => {
             </div>
             <div className='2xl:px-36 xl:px-20 px-6 rounded-t-[50px]'>
                 <div className='flex items-start justify-between md:flex-row flex-col gap-10 lg:mt-20 mt-10 '>
-                    <div className='md:w-1/2 w-full'>
+                    <div className='md:w-[60%] w-full'>
                         {/*  Change Category*/}
                         <ChangeCategory />
                         {/* Session History */}

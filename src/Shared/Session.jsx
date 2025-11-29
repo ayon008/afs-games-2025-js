@@ -2,12 +2,17 @@
 import useGetSessionHistory from "@/js/GetSessionHistory";
 import React, { useState } from "react";
 import Image from "next/image";
-import { FaShareSquare } from "react-icons/fa";
+import { FaShareSquare, FaTrash } from "react-icons/fa";
+import useAxiosSecure from "@/Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const Session = ({ uid }) => {
-  const { sessionHistory, isLoading, isError, error } = useGetSessionHistory(uid);
+  const { sessionHistory, isLoading, isError, error, refetch } = useGetSessionHistory(uid);
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
   const [preview, setPreview] = useState(null);
+
+
+
 
   // Map Style Configuration
   const mapStyle = [
@@ -154,6 +159,57 @@ const Session = ({ uid }) => {
     window.open(appLeaderboardUrl, "_blank");
   };
 
+
+  const axiosSecure = useAxiosSecure();
+
+
+  const handleDelete = id => {
+    console.log(id);
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this action!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Deleting...',
+          text: 'Please wait while the file is being deleted',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          }
+        });
+
+        axiosSecure.delete(`/deleteGpx/${id}`)
+          .then(response => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Deleted!',
+              text: 'The file has been deleted successfully.',
+            });
+            refetch(); // Refetch the data after deletion
+          })
+          .catch(error => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error!',
+              text: 'Failed to delete the file. Please try again.',
+            });
+            console.error(error);
+          });
+      }
+    });
+  };
+
+  console.log(sessionHistory);
+
+
   return (
     <div className="text-white lg:my-20 my-10">
       <h2 className="font-semibold 2xl:text-5xl xl:text-3xl">Your Session History</h2>
@@ -169,6 +225,7 @@ const Session = ({ uid }) => {
               <th>Time</th>
               <th>Distance</th>
               <th>Share</th>
+              <th>Delete</th>
             </tr>
           </thead>
 
@@ -201,6 +258,11 @@ const Session = ({ uid }) => {
                     <td>
                       <button className="btn btn-outline text-white" onClick={() => openShareFor(singleHistory)}>
                         <FaShareSquare />
+                      </button>
+                    </td>
+                    <td>
+                      <button className="btn btn-outline text-white" onClick={() => handleDelete(singleHistory?._id)}>
+                        <FaTrash />
                       </button>
                     </td>
                   </tr>

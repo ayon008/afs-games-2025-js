@@ -89,6 +89,51 @@ const Page = () => {
         });
     }, [userInfo, reset]);
 
+    // 
+
+    const handleDelete = id => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this action!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Deleting...',
+                    text: 'Please wait while the file is being deleted',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                axiosSecure.delete(`/fileName/${id}`)
+                    .then(response => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Deleted!',
+                            text: 'The file has been deleted successfully.',
+                        });
+                        refetch(); // Refetch the data after deletion
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: 'Failed to delete the file. Please try again.',
+                        });
+                        console.error(error);
+                    });
+            }
+        });
+    };
+
+
     return (
         <div className='2xl:px-36 2xl:py-32 xl:px-20 xl:py-32 px-6 py-20'>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -167,7 +212,7 @@ const Page = () => {
                     </div>
                 </div>
             </form>
-            
+
         </div>
     );
 };
