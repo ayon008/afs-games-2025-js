@@ -16,7 +16,7 @@ import price8 from "../../public/Group 37173 (2) 2.png"
 
 const Award = () => {
     // const categories = ['Wingfoil', 'Windfoil', 'dockstart', 'surfFoil', 'dw', 'Parawing'];
-    const categories = ['Wingfoil', 'Windfoil', 'Dockstart', 'Pron Foil', 'Downwind', 'Parawing'];
+    const categories = ['Wingfoil', 'Windfoil', 'Dockstart', 'Prone Foil', 'Downwind', 'Parawing'];
     const [tabIndex, setTabIndex] = useState(0);
     const text = <p className='2xl:text-6xl xl:text-5xl text-3xl text-white text-center mt-28'>Prizes to be announced soon</p>
     const headline = `${inter.className} font-inter font-black text-[25px] leading-[100%] tracking-[-0.01em] text-center text-white`;
