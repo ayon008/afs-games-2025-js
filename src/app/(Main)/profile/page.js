@@ -127,7 +127,7 @@ const page = async ({ searchParams }) => {
                         <Session uid={uid} />
                     </div>
                     <div className='md:w-1/2 w-full'>
-                        <UserMap apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY} height={400} />
+                        {/* <UserMap apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY} height={400} /> */}
                     </div>
                 </div>
                 <div className='mt-10'>

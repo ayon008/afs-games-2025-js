@@ -27,7 +27,8 @@ const UploadGPX = ({ data }) => {
     const { user } = useAuth();
     const { files, refetch } = GetFileName();
     const { isLoading, isError, error, userInfo } = GetUserData(user?.uid);
-    const isDisabled = userInfo?.approved;
+    // const isDisabled = userInfo?.approved;
+    const isDisabled = false;
     const axiosSecure = useAxiosSecure();
 
     const { date } = GetBlock();
@@ -282,7 +283,8 @@ const UploadGPX = ({ data }) => {
                     </ul>
                 )}
             </div>
-            <p className={`${!isDisabled ? 'block' : 'hidden'} text-center text-red-600 font-semibold mt-6`}>Your account has not been approved yet</p>
+            {/* <p className={`${!isDisabled ? 'block' : 'hidden'} text-center text-red-600 font-semibold mt-6`}>Your account has not been approved yet</p> */}
+            <p className={`${!isDisabled ? 'block' : 'hidden'} text-center text-red-600 font-semibold mt-6`}>Session has been ended</p>
             <div className='my-10'>
                 {
                     files?.map((f, i) => {

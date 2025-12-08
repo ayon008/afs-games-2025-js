@@ -30,7 +30,7 @@ const page = async () => {
                     <h1 className={`${morgana.className} 2xl:mb-20 xl:mb-20 mb-12 text-center text-white 2xl:text-[60px] xl:text-[54px] text-4xl`}>
                         <span className='text-[#FFE500]'>The Afs Games across the globe</span>
                     </h1>
-                    <AllMap cities={uniqueCities} pointTable={pointTable} />
+                    {/* <AllMap cities={uniqueCities} pointTable={pointTable} /> */}
                 </div>
             </div>
             <Join />
