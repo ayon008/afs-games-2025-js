@@ -1,5 +1,5 @@
 const getAllSponsors = async () => {
-    const response = await fetch(`https://afs-backend-vhta.vercel.app/sponsors`,
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/sponsors`,
         {
             cache: 'no-cache'
         }

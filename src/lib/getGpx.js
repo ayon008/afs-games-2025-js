@@ -28,4 +28,4 @@ export default GetGpx;
 
 
 
-// https://afs-backend-vhta.vercel.app/
+// process.env.NEXT_PUBLIC_BACKEND_API/

@@ -1,7 +1,7 @@
 const getUserLeaderBoard = async () => {
-    const response = await fetch(`https://afs-backend-vhta.vercel.app/totalPoints`,
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/totalPoints`,
         {
-            cache:'no-cache'
+            cache: 'no-cache'
         }
     );
     return response.json()

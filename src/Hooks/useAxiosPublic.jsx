@@ -1,11 +1,9 @@
 import axios from "axios";
 const useAxiosPublic = () => {
     const instance = axios.create({
-        baseURL: 'https://afs-backend-vhta.vercel.app',
+        baseURL: process.env.NEXT_PUBLIC_BACKEND_API,
     });
     return instance;
 };
 
 export default useAxiosPublic;
-
-// https://afs-backend-vhta.vercel.app//

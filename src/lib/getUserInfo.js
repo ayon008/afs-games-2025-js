@@ -4,7 +4,7 @@ const getUserInfo = async (uid) => {
     const cookieStore = cookies();
     const cookieObj = cookieStore.get('userToken');
     const token = cookieObj?.value;
-    const response = await fetch(`https://afs-backend-vhta.vercel.app//user/${uid}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/${uid}`, {
         method: 'GET',  // Optional if GET is the default
         cache: 'no-cache',
         headers: {
